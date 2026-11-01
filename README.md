@@ -51,12 +51,13 @@ npx expo start --tunnel
 ```
 src/
 ├── app/           Pantallas y rutas (Expo Router): cada archivo es una pantalla
-│   ├── _layout.tsx  Layout raíz de la app
-│   └── index.tsx    Pantalla de inicio
+│   ├── _layout.tsx    Layout raíz de la app
+│   ├── (tabs)/        Pestañas: Inicio, Mapa, Categorías y Lugares
+│   └── lugar/[id].tsx Detalle de un lugar
 ├── componentes/   Componentes visuales reutilizables
 ├── hooks/         Hooks personalizados (useAlgo)
-├── constantes/    Colores, tamaños, textos fijos
-├── servicios/     Llamadas a APIs y almacenamiento
+├── constantes/    Colores, íconos, categorías y datos de ejemplo
+├── servicios/     Llamadas a APIs y almacenamiento (por ahora, los lugares de ejemplo)
 ├── utilidades/    Funciones auxiliares sin React
 └── tipos/         Tipos e interfaces de TypeScript compartidos
 assets/            Imágenes, íconos y fuentes

@@ -1,9 +1,10 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { ContenedorIcono } from '@/componentes/ContenedorIcono';
 import { Estrellas } from '@/componentes/Estrellas';
 import { Icono } from '@/componentes/Icono';
 import { obtenerCategoria } from '@/constantes/categorias';
-import { COLORES } from '@/constantes/colores';
+import { BORDES, COLORES, ESPACIOS, ICONO, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
 import type { Lugar } from '@/tipos/lugar';
 
 type Props = {
@@ -16,9 +17,7 @@ export function FilaLugar({ lugar, alPresionar }: Props) {
 
   return (
     <Pressable style={estilos.fila} onPress={alPresionar} accessibilityRole="button">
-      <View style={[estilos.icono, { backgroundColor: categoria?.color }]}>
-        {categoria && <Icono nombre={categoria.icono} tamano={22} color="#FFFFFF" />}
-      </View>
+      {categoria && <ContenedorIcono nombre={categoria.icono} tamano={44} />}
       <View style={estilos.contenido}>
         <Text style={estilos.nombre} numberOfLines={1}>
           {lugar.nombre}
@@ -28,7 +27,7 @@ export function FilaLugar({ lugar, alPresionar }: Props) {
         </Text>
         <Estrellas valor={lugar.estrellas} />
       </View>
-      <Icono nombre="flecha" tamano={18} color={COLORES.textoSuave} />
+      <Icono nombre="flecha" tamano={ICONO.pequeno + 2} color={COLORES.textoSecundario} />
     </Pressable>
   );
 }
@@ -37,31 +36,23 @@ const estilos = StyleSheet.create({
   fila: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    padding: 12,
-    borderRadius: 12,
-    borderWidth: 1,
+    gap: ESPACIOS.m,
+    padding: ESPACIOS.m,
+    borderRadius: RADIOS.tarjeta,
+    borderWidth: BORDES.tarjeta,
     borderColor: COLORES.borde,
     backgroundColor: COLORES.superficie,
   },
-  icono: {
-    width: 48,
-    height: 48,
-    borderRadius: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   contenido: {
     flex: 1,
-    gap: 3,
+    gap: 2,
   },
   nombre: {
-    fontSize: 15,
-    fontWeight: '700',
+    ...TIPOGRAFIA.titulo3,
     color: COLORES.texto,
   },
   horario: {
-    fontSize: 13,
-    color: COLORES.textoSuave,
+    ...TIPOGRAFIA.pequeno,
+    color: COLORES.textoSecundario,
   },
 });

@@ -1,14 +1,31 @@
+import { PALETA } from '@/constantes/tema';
 import type { Categoria } from '@/tipos/lugar';
 
-// El color de cada categoría también se usa en los puntos del mapa
+// colorMapa solo se usa en los puntos y filtros del mapa, para distinguir cada categoría.
+// En tarjetas y listas los íconos van con el estilo azul de la marca.
 export const CATEGORIAS: Categoria[] = [
-  { id: 'restaurantes', nombre: 'Restaurantes', icono: 'restaurantes', color: '#D32F2F' },
-  { id: 'comida-rapida', nombre: 'Comida rápida', icono: 'comidaRapida', color: '#EF6C00' },
-  { id: 'hoteleria', nombre: 'Hotelería', icono: 'hoteleria', color: '#1565C0' },
-  { id: 'parques', nombre: 'Parques', icono: 'parques', color: '#2E7D32' },
-  { id: 'museos', nombre: 'Museos', icono: 'museos', color: '#6A1B9A' },
-  { id: 'navegaciones', nombre: 'Navegaciones', icono: 'navegaciones', color: '#00838F' },
-  { id: 'actividades', nombre: 'Actividades', icono: 'actividades', color: '#AD7A00' },
+  {
+    id: 'restaurantes',
+    nombre: 'Restaurantes',
+    icono: 'restaurantes',
+    colorMapa: PALETA.magenta[500],
+  },
+  {
+    id: 'comida-rapida',
+    nombre: 'Comida rápida',
+    icono: 'comidaRapida',
+    colorMapa: PALETA.amarillo[600],
+  },
+  { id: 'hoteleria', nombre: 'Hotelería', icono: 'hoteleria', colorMapa: PALETA.azul[500] },
+  { id: 'parques', nombre: 'Parques', icono: 'parques', colorMapa: PALETA.verde[500] },
+  { id: 'museos', nombre: 'Museos', icono: 'museos', colorMapa: PALETA.azul[800] },
+  {
+    id: 'navegaciones',
+    nombre: 'Navegaciones',
+    icono: 'navegaciones',
+    colorMapa: PALETA.celeste[500],
+  },
+  { id: 'actividades', nombre: 'Actividades', icono: 'actividades', colorMapa: PALETA.verde[800] },
 ];
 
 export function obtenerCategoria(id: string | undefined) {

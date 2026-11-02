@@ -8,7 +8,7 @@ import { EncabezadoSeccion } from '@/componentes/EncabezadoSeccion';
 import { Icono } from '@/componentes/Icono';
 import { TarjetaLugar } from '@/componentes/TarjetaLugar';
 import { CATEGORIAS } from '@/constantes/categorias';
-import { COLORES } from '@/constantes/colores';
+import { COLORES, ESPACIOS, ICONO, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
 import { obtenerLugaresDestacados } from '@/servicios/lugares';
 
 export default function PantallaInicio() {
@@ -17,9 +17,14 @@ export default function PantallaInicio() {
   return (
     <ScrollView
       style={estilos.pantalla}
-      contentContainerStyle={[estilos.contenido, { paddingTop: margenes.top + 16 }]}
+      contentContainerStyle={[estilos.contenido, { paddingTop: margenes.top + ESPACIOS.m }]}
       keyboardShouldPersistTaps="handled"
     >
+      <View style={estilos.bloque}>
+        <Text style={estilos.subtitulo}>Mi Comuna</Text>
+        <Text style={estilos.titulo}>Quinchao</Text>
+      </View>
+
       <View style={estilos.bloque}>
         <Buscador
           alBuscar={(busqueda) =>
@@ -34,11 +39,16 @@ export default function PantallaInicio() {
           onPress={() => router.navigate('/mapa')}
           accessibilityRole="button"
         >
-          <View style={estilos.textoBanner}>
-            <Text style={estilos.tituloBanner}>¿A dónde ir en Quinchao?</Text>
-            <Text style={estilos.detalleBanner}>Mira todas las opciones en el mapa</Text>
+          <Text style={estilos.etiquetaBanner}>Cerca de ti</Text>
+          <Text style={estilos.tituloBanner}>¿A dónde ir en Quinchao?</Text>
+          <View style={estilos.botonBanner}>
+            <Text style={estilos.textoBotonBanner}>Ver el mapa</Text>
+            <Icono
+              nombre="flechaDerecha"
+              tamano={ICONO.pequeno + 2}
+              color={COLORES.sobreSecundario}
+            />
           </View>
-          <Icono nombre="mapa" tamano={32} color="#FFFFFF" />
         </Pressable>
       </View>
 
@@ -97,42 +107,58 @@ const estilos = StyleSheet.create({
     backgroundColor: COLORES.fondo,
   },
   contenido: {
-    paddingBottom: 24,
+    paddingBottom: ESPACIOS.xxl,
   },
   bloque: {
-    paddingHorizontal: 16,
-    marginBottom: 20,
+    paddingHorizontal: ESPACIOS.xxl,
+    marginBottom: ESPACIOS.xl,
+  },
+  subtitulo: {
+    ...TIPOGRAFIA.cuerpo,
+    color: COLORES.textoSecundario,
+  },
+  titulo: {
+    ...TIPOGRAFIA.titulo1,
+    color: COLORES.primario,
   },
   banner: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    padding: 18,
-    borderRadius: 14,
+    gap: ESPACIOS.s,
+    padding: ESPACIOS.xl,
+    borderRadius: RADIOS.tarjeta,
     backgroundColor: COLORES.primario,
   },
-  textoBanner: {
-    flex: 1,
-    gap: 4,
+  etiquetaBanner: {
+    ...TIPOGRAFIA.etiqueta,
+    color: COLORES.sobrePrimario,
   },
   tituloBanner: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#FFFFFF',
+    ...TIPOGRAFIA.titulo2,
+    color: COLORES.sobrePrimario,
   },
-  detalleBanner: {
-    fontSize: 14,
-    color: '#FFFFFF',
+  botonBanner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    gap: ESPACIOS.s,
+    marginTop: ESPACIOS.s,
+    paddingHorizontal: ESPACIOS.l,
+    paddingVertical: ESPACIOS.m,
+    borderRadius: RADIOS.boton,
+    backgroundColor: COLORES.secundario,
+  },
+  textoBotonBanner: {
+    ...TIPOGRAFIA.boton,
+    color: COLORES.sobreSecundario,
   },
   separacion: {
-    marginBottom: 24,
+    marginBottom: ESPACIOS.xxl,
   },
   carrusel: {
-    gap: 4,
-    paddingHorizontal: 12,
+    gap: ESPACIOS.xs,
+    paddingHorizontal: ESPACIOS.l,
   },
   carruselTarjetas: {
-    gap: 12,
-    paddingHorizontal: 16,
+    gap: ESPACIOS.m,
+    paddingHorizontal: ESPACIOS.xxl,
   },
 });

@@ -19,7 +19,7 @@ export function MapaLugares({ lugares, alAbrirLugar }: Props) {
           coordinate={lugar.coordenadas}
           title={lugar.nombre}
           description={lugar.horario}
-          pinColor={obtenerCategoria(lugar.categoriaId)?.color}
+          pinColor={obtenerCategoria(lugar.categoriaId)?.colorMapa}
           onCalloutPress={() => alAbrirLugar(lugar)}
         />
       ))}

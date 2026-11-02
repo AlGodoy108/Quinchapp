@@ -56,7 +56,7 @@ src/
 │   └── lugar/[id].tsx Detalle de un lugar
 ├── componentes/   Componentes visuales reutilizables
 ├── hooks/         Hooks personalizados (useAlgo)
-├── constantes/    Colores, íconos, categorías y datos de ejemplo
+├── constantes/    Tema (estilos), íconos, categorías y datos de ejemplo
 ├── servicios/     Llamadas a APIs y almacenamiento (por ahora, los lugares de ejemplo)
 ├── utilidades/    Funciones auxiliares sin React
 └── tipos/         Tipos e interfaces de TypeScript compartidos
@@ -71,6 +71,30 @@ Para importar desde `src/` usa el alias `@/`:
 ```ts
 import { BotonPrimario } from '@/componentes/BotonPrimario';
 ```
+
+## Estilos
+
+Todos los estilos están centralizados en [src/constantes/tema.ts](src/constantes/tema.ts) y vienen de las variables del Figma (paleta del logo de Quinchao):
+
+| Exporta                                 | Qué contiene                                                            |
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| `PALETA`                                | Las escalas 50–900 de azul, amarillo, celeste, magenta, verde y neutros |
+| `COLORES`                               | El uso de cada color: `primario`, `texto`, `borde`, `fondo`…            |
+| `TIPOGRAFIA`                            | Estilos de texto en Poppins: `titulo1`, `cuerpo`, `boton`…              |
+| `RADIOS`, `BORDES`, `ESPACIOS`, `ICONO` | Bordes redondeados, grosores, márgenes e íconos                         |
+
+```ts
+import { COLORES, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
+
+const estilos = StyleSheet.create({
+  titulo: { ...TIPOGRAFIA.titulo2, color: COLORES.texto },
+  tarjeta: { borderRadius: RADIOS.tarjeta, backgroundColor: COLORES.superficie },
+});
+```
+
+- **No escribas colores ni tamaños sueltos** (`'#1070BA'`, `fontSize: 15`) en las pantallas: usa el tema.
+- **No uses `fontWeight`** con Poppins: cada peso es una fuente distinta y ya viene en `TIPOGRAFIA`.
+- **Íconos:** usa `<Icono nombre="..." />`. Son de [Lucide](https://lucide.dev/icons), el mismo set del Figma. Para agregar uno, impórtalo en [src/constantes/iconos.ts](src/constantes/iconos.ts).
 
 ## Agregar librerías
 

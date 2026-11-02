@@ -1,7 +1,7 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text } from 'react-native';
 
-import { Icono } from '@/componentes/Icono';
-import { COLORES } from '@/constantes/colores';
+import { ContenedorIcono } from '@/componentes/ContenedorIcono';
+import { COLORES, ESPACIOS, TIPOGRAFIA } from '@/constantes/tema';
 import type { Categoria } from '@/tipos/lugar';
 
 type Props = {
@@ -12,9 +12,7 @@ type Props = {
 export function CirculoCategoria({ categoria, alPresionar }: Props) {
   return (
     <Pressable style={estilos.contenedor} onPress={alPresionar} accessibilityRole="button">
-      <View style={[estilos.circulo, { backgroundColor: categoria.color }]}>
-        <Icono nombre={categoria.icono} tamano={28} color="#FFFFFF" />
-      </View>
+      <ContenedorIcono nombre={categoria.icono} tamano={64} redondo />
       <Text style={estilos.nombre} numberOfLines={2}>
         {categoria.nombre}
       </Text>
@@ -26,17 +24,10 @@ const estilos = StyleSheet.create({
   contenedor: {
     width: 84,
     alignItems: 'center',
-    gap: 6,
-  },
-  circulo: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
+    gap: ESPACIOS.s,
   },
   nombre: {
-    fontSize: 12,
+    ...TIPOGRAFIA.pequeno,
     textAlign: 'center',
     color: COLORES.texto,
   },

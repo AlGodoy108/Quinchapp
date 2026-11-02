@@ -1,7 +1,7 @@
 import { ScrollView, StyleSheet, Text } from 'react-native';
 
 import { FilaLugar } from '@/componentes/FilaLugar';
-import { COLORES } from '@/constantes/colores';
+import { COLORES, ESPACIOS, TIPOGRAFIA } from '@/constantes/tema';
 import type { Lugar } from '@/tipos/lugar';
 
 type Props = {
@@ -27,13 +27,14 @@ const estilos = StyleSheet.create({
     backgroundColor: COLORES.fondo,
   },
   contenido: {
-    gap: 8,
+    gap: ESPACIOS.s,
     paddingTop: 72,
-    paddingHorizontal: 16,
-    paddingBottom: 16,
+    paddingHorizontal: ESPACIOS.l,
+    paddingBottom: ESPACIOS.l,
   },
   aviso: {
-    color: COLORES.textoSuave,
+    ...TIPOGRAFIA.pequeno,
+    color: COLORES.textoSecundario,
     textAlign: 'center',
   },
 });

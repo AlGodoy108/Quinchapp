@@ -4,7 +4,7 @@ import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { FilaLugar } from '@/componentes/FilaLugar';
 import { Icono } from '@/componentes/Icono';
 import { obtenerCategoria } from '@/constantes/categorias';
-import { COLORES } from '@/constantes/colores';
+import { COLORES, ESPACIOS, ICONO, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
 import { obtenerLugares } from '@/servicios/lugares';
 
 export default function PantallaLugares() {
@@ -30,7 +30,7 @@ export default function PantallaLugares() {
             accessibilityLabel={`Quitar filtro ${filtroActivo}`}
           >
             <Text style={estilos.textoFiltro}>{filtroActivo}</Text>
-            <Icono nombre="cerrar" tamano={14} color="#FFFFFF" />
+            <Icono nombre="cerrar" tamano={ICONO.pequeno - 2} color={COLORES.sobrePrimario} />
           </Pressable>
         ) : undefined
       }
@@ -55,30 +55,31 @@ const estilos = StyleSheet.create({
     backgroundColor: COLORES.fondo,
   },
   contenido: {
-    gap: 8,
-    padding: 16,
+    gap: ESPACIOS.s,
+    padding: ESPACIOS.l,
   },
   filtro: {
     flexDirection: 'row',
     alignItems: 'center',
     alignSelf: 'flex-start',
-    gap: 8,
-    marginBottom: 4,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 20,
+    gap: ESPACIOS.s,
+    marginBottom: ESPACIOS.xs,
+    paddingHorizontal: ESPACIOS.m,
+    paddingVertical: ESPACIOS.s,
+    borderRadius: RADIOS.chip,
     backgroundColor: COLORES.primario,
   },
   textoFiltro: {
+    ...TIPOGRAFIA.boton,
     fontSize: 13,
-    fontWeight: '600',
-    color: '#FFFFFF',
+    color: COLORES.sobrePrimario,
   },
   vacio: {
     paddingVertical: 48,
     alignItems: 'center',
   },
   textoVacio: {
-    color: COLORES.textoSuave,
+    ...TIPOGRAFIA.cuerpo,
+    color: COLORES.textoSecundario,
   },
 });

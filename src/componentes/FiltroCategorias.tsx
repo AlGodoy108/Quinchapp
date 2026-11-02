@@ -1,7 +1,7 @@
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
 import { CATEGORIAS } from '@/constantes/categorias';
-import { COLORES } from '@/constantes/colores';
+import { BORDES, COLORES, ESPACIOS, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
 import type { IdCategoria } from '@/tipos/lugar';
 
 type Props = {
@@ -26,7 +26,7 @@ export function FiltroCategorias({ seleccionada, alSeleccionar }: Props) {
         <Opcion
           key={categoria.id}
           nombre={categoria.nombre}
-          color={categoria.color}
+          color={categoria.colorMapa}
           activa={seleccionada === categoria.id}
           alPresionar={() => alSeleccionar(categoria.id)}
         />
@@ -50,7 +50,7 @@ function Opcion({ nombre, color, activa, alPresionar }: PropsOpcion) {
       accessibilityRole="button"
       accessibilityState={{ selected: activa }}
     >
-      <View style={[estilos.punto, { backgroundColor: activa ? '#FFFFFF' : color }]} />
+      <View style={[estilos.punto, { backgroundColor: activa ? COLORES.sobrePrimario : color }]} />
       <Text style={[estilos.nombre, activa && estilos.nombreActivo]}>{nombre}</Text>
     </Pressable>
   );
@@ -58,18 +58,18 @@ function Opcion({ nombre, color, activa, alPresionar }: PropsOpcion) {
 
 const estilos = StyleSheet.create({
   contenido: {
-    gap: 8,
-    paddingHorizontal: 12,
-    paddingVertical: 4,
+    gap: ESPACIOS.s,
+    paddingHorizontal: ESPACIOS.m,
+    paddingVertical: ESPACIOS.xs,
   },
   opcion: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 1,
+    paddingHorizontal: ESPACIOS.m,
+    paddingVertical: ESPACIOS.s,
+    borderRadius: RADIOS.chip,
+    borderWidth: BORDES.tarjeta,
     borderColor: COLORES.borde,
     backgroundColor: COLORES.superficie,
   },
@@ -79,11 +79,11 @@ const estilos = StyleSheet.create({
     borderRadius: 5,
   },
   nombre: {
+    ...TIPOGRAFIA.boton,
     fontSize: 13,
-    fontWeight: '600',
     color: COLORES.texto,
   },
   nombreActivo: {
-    color: '#FFFFFF',
+    color: COLORES.sobrePrimario,
   },
 });

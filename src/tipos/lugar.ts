@@ -13,7 +13,7 @@ export type Categoria = {
   id: IdCategoria;
   nombre: string;
   icono: NombreIcono;
-  color: string;
+  colorMapa: string;
 };
 
 export type Lugar = {

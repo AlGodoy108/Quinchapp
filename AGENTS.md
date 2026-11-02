@@ -33,6 +33,8 @@ Run lint and typecheck before declaring any task done.
 
 - All identifiers, components, files and folders are written in **Spanish** (e.g. `src/componentes/`, `BotonPrimario.tsx`, `obtenerLugares`). Only `src/app/` keeps its English name because Expo Router requires it.
 - Non-route folders: `src/componentes`, `src/hooks`, `src/constantes`, `src/servicios`, `src/utilidades`, `src/tipos`. Import them with the `@/` alias.
+- All styles live in `src/constantes/tema.ts` (`PALETA`, `COLORES`, `TIPOGRAFIA`, `RADIOS`, `BORDES`, `ESPACIOS`, `ICONO`), taken from the Figma variables. Never hardcode colors, font sizes or radii in screens, and never use `fontWeight` (each Poppins weight is its own `fontFamily`).
+- Icons are Lucide (`lucide-react-native`), the same set as the Figma. Render them with `<Icono nombre="..." />` and register new ones in `src/constantes/iconos.ts`.
 - The team runs the app with **Expo Go**, so avoid libraries that need a development build unless the team agrees.
 - See `CONTRIBUTING.md` for branch and commit conventions.
 

@@ -1,10 +1,11 @@
 import { Stack, useLocalSearchParams } from 'expo-router';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { ContenedorIcono } from '@/componentes/ContenedorIcono';
 import { Estrellas } from '@/componentes/Estrellas';
 import { Icono } from '@/componentes/Icono';
 import { obtenerCategoria } from '@/constantes/categorias';
-import { COLORES } from '@/constantes/colores';
+import { BORDES, COLORES, ESPACIOS, ICONO, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
 import { obtenerLugarPorId } from '@/servicios/lugares';
 
 export default function PantallaDetalleLugar() {
@@ -22,17 +23,17 @@ export default function PantallaDetalleLugar() {
   const categoria = obtenerCategoria(lugar.categoriaId);
 
   return (
-    <ScrollView style={estilos.pantalla}>
+    <ScrollView style={estilos.pantalla} contentContainerStyle={estilos.contenido}>
       <Stack.Screen options={{ title: lugar.nombre }} />
-      <View style={[estilos.imagen, { backgroundColor: categoria?.color }]}>
-        {categoria && <Icono nombre={categoria.icono} tamano={64} color="#FFFFFF" />}
+      <View style={estilos.portada}>
+        {categoria && <ContenedorIcono nombre={categoria.icono} tamano={96} redondo />}
       </View>
-      <View style={estilos.contenido}>
+      <View style={estilos.tarjeta}>
+        {categoria && <Text style={estilos.categoria}>{categoria.nombre}</Text>}
         <Text style={estilos.nombre}>{lugar.nombre}</Text>
-        <Text style={estilos.categoria}>{categoria?.nombre}</Text>
         <Estrellas valor={lugar.estrellas} />
         <View style={estilos.dato}>
-          <Icono nombre="horario" tamano={18} color={COLORES.textoSuave} />
+          <Icono nombre="horario" tamano={ICONO.pequeno + 2} color={COLORES.textoSecundario} />
           <Text style={estilos.descripcion}>{lugar.horario}</Text>
         </View>
         <Text style={estilos.descripcion}>{lugar.descripcion}</Text>
@@ -46,38 +47,48 @@ const estilos = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORES.fondo,
   },
+  contenido: {
+    gap: ESPACIOS.l,
+    padding: ESPACIOS.l,
+  },
   noEncontrado: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: COLORES.fondo,
   },
-  imagen: {
-    height: 200,
+  portada: {
+    height: 180,
     alignItems: 'center',
     justifyContent: 'center',
+    borderRadius: RADIOS.tarjeta,
+    backgroundColor: COLORES.superficie,
+    borderWidth: BORDES.tarjeta,
+    borderColor: COLORES.borde,
   },
-  contenido: {
-    gap: 8,
-    padding: 16,
-  },
-  nombre: {
-    fontSize: 24,
-    fontWeight: '700',
-    color: COLORES.texto,
+  tarjeta: {
+    gap: ESPACIOS.s,
+    padding: ESPACIOS.l,
+    borderRadius: RADIOS.tarjeta,
+    borderWidth: BORDES.tarjeta,
+    borderColor: COLORES.borde,
+    backgroundColor: COLORES.superficie,
   },
   categoria: {
-    fontSize: 15,
-    color: COLORES.textoSuave,
+    ...TIPOGRAFIA.etiqueta,
+    color: COLORES.primario,
+  },
+  nombre: {
+    ...TIPOGRAFIA.titulo1,
+    color: COLORES.texto,
   },
   dato: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    gap: ESPACIOS.s,
   },
   descripcion: {
-    fontSize: 15,
-    lineHeight: 22,
+    ...TIPOGRAFIA.cuerpo,
     color: COLORES.texto,
   },
 });

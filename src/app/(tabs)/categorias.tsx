@@ -1,9 +1,10 @@
 import { router } from 'expo-router';
 import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { ContenedorIcono } from '@/componentes/ContenedorIcono';
 import { Icono } from '@/componentes/Icono';
 import { CATEGORIAS } from '@/constantes/categorias';
-import { COLORES } from '@/constantes/colores';
+import { BORDES, COLORES, ESPACIOS, ICONO, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
 import { obtenerLugares } from '@/servicios/lugares';
 
 export default function PantallaCategorias() {
@@ -27,16 +28,14 @@ export default function PantallaCategorias() {
             }
             accessibilityRole="button"
           >
-            <View style={[estilos.icono, { backgroundColor: categoria.color }]}>
-              <Icono nombre={categoria.icono} tamano={22} color="#FFFFFF" />
-            </View>
+            <ContenedorIcono nombre={categoria.icono} tamano={44} />
             <View style={estilos.textos}>
               <Text style={estilos.nombre}>{categoria.nombre}</Text>
               <Text style={estilos.cantidad}>
                 {cantidad} {cantidad === 1 ? 'lugar' : 'lugares'}
               </Text>
             </View>
-            <Icono nombre="flecha" tamano={18} color={COLORES.textoSuave} />
+            <Icono nombre="flecha" tamano={ICONO.pequeno + 2} color={COLORES.textoSecundario} />
           </Pressable>
         );
       }}
@@ -50,37 +49,29 @@ const estilos = StyleSheet.create({
     backgroundColor: COLORES.fondo,
   },
   contenido: {
-    gap: 8,
-    padding: 16,
+    gap: ESPACIOS.s,
+    padding: ESPACIOS.l,
   },
   fila: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
-    padding: 12,
-    borderRadius: 12,
-    borderWidth: 1,
+    gap: ESPACIOS.m,
+    padding: ESPACIOS.m,
+    borderRadius: RADIOS.tarjeta,
+    borderWidth: BORDES.tarjeta,
     borderColor: COLORES.borde,
     backgroundColor: COLORES.superficie,
-  },
-  icono: {
-    width: 44,
-    height: 44,
-    borderRadius: 22,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   textos: {
     flex: 1,
     gap: 2,
   },
   nombre: {
-    fontSize: 15,
-    fontWeight: '700',
+    ...TIPOGRAFIA.titulo3,
     color: COLORES.texto,
   },
   cantidad: {
-    fontSize: 13,
-    color: COLORES.textoSuave,
+    ...TIPOGRAFIA.pequeno,
+    color: COLORES.textoSecundario,
   },
 });

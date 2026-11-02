@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-import { COLORES } from '@/constantes/colores';
+import { COLORES, ESPACIOS, TIPOGRAFIA } from '@/constantes/tema';
 
 type Props = {
   titulo: string;
@@ -24,17 +24,15 @@ const estilos = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 16,
-    marginBottom: 12,
+    paddingHorizontal: ESPACIOS.xxl,
+    marginBottom: ESPACIOS.m,
   },
   titulo: {
-    fontSize: 18,
-    fontWeight: '700',
+    ...TIPOGRAFIA.titulo2,
     color: COLORES.texto,
   },
   accion: {
-    fontSize: 14,
-    fontWeight: '600',
+    ...TIPOGRAFIA.boton,
     color: COLORES.primario,
   },
 });

@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Buscador } from '@/componentes/Buscador';
@@ -20,9 +20,17 @@ export default function PantallaInicio() {
       contentContainerStyle={[estilos.contenido, { paddingTop: margenes.top + ESPACIOS.m }]}
       keyboardShouldPersistTaps="handled"
     >
-      <View style={estilos.bloque}>
-        <Text style={estilos.subtitulo}>Mi Comuna</Text>
-        <Text style={estilos.titulo}>Quinchao</Text>
+      <View style={[estilos.bloque, estilos.encabezado]}>
+        <Image
+          source={require('../../../assets/imagenes/logo-municipalidad-horizontal.png')}
+          style={estilos.logo}
+          resizeMode="contain"
+          accessibilityLabel="Logo de la Municipalidad de Quinchao"
+        />
+        <View style={estilos.textosEncabezado}>
+          <Text style={estilos.subtitulo}>Mi Comuna</Text>
+          <Text style={estilos.titulo}>Quinchao</Text>
+        </View>
       </View>
 
       <View style={estilos.bloque}>
@@ -113,13 +121,30 @@ const estilos = StyleSheet.create({
     paddingHorizontal: ESPACIOS.xxl,
     marginBottom: ESPACIOS.xl,
   },
+  encabezado: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: ESPACIOS.m,
+  },
+  logo: {
+    // Proporción del logo horizontal (600 × 197)
+    width: 158,
+    height: 52,
+  },
+  textosEncabezado: {
+    flexShrink: 1,
+    alignItems: 'flex-end',
+  },
   subtitulo: {
     ...TIPOGRAFIA.cuerpo,
     color: COLORES.textoSecundario,
+    textAlign: 'right',
   },
   titulo: {
     ...TIPOGRAFIA.titulo1,
     color: COLORES.primario,
+    textAlign: 'right',
   },
   banner: {
     gap: ESPACIOS.s,

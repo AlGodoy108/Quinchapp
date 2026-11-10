@@ -35,7 +35,6 @@ import { useTituloPagina } from '@/hooks/useTituloPagina';
 import { crearServicio, ErrorSesion, ErrorValidacion } from '@/servicios/admin';
 import { ESTADOS_VERIFICACION, type DatosServicio, type Servicio } from '@/tipos/servicio';
 import {
-  hoyIso,
   separarCoordenadas,
   validarServicio,
   type ErroresServicio,
@@ -71,8 +70,6 @@ function formularioInicial(): Formulario {
     servicios: [],
     capacidad: '',
     estadoVerificacion: '',
-    fuenteUrl: '',
-    fechaConsulta: hoyIso(),
   };
 }
 
@@ -133,7 +130,7 @@ const PASOS: Paso[] = [
     pregunta: '¿Qué tan confiable es esta información?',
     ayuda: 'Ayuda al equipo a saber qué datos hay que confirmar antes de publicar.',
     icono: 'verificado',
-    campos: ['estadoVerificacion', 'fuenteUrl', 'fechaConsulta'],
+    campos: ['estadoVerificacion'],
   },
   {
     titulo: 'Revisar',
@@ -164,8 +161,6 @@ const ETIQUETAS: Record<Campo, string> = {
   servicios: 'Servicios',
   capacidad: 'Capacidad',
   estadoVerificacion: 'Estado de verificación',
-  fuenteUrl: 'Fuente (enlace)',
-  fechaConsulta: 'Fecha de consulta',
 };
 
 export default function PantallaNuevoServicio() {
@@ -567,7 +562,7 @@ function ContenidoPaso({
                 forma="tarjeta"
                 icono="verificado"
                 texto="Verificado"
-                descripcion="La fuente es reciente o lo confirmaste con el establecimiento."
+                descripcion="Los datos están al día o los confirmaste con el establecimiento."
                 seleccionada={f.estadoVerificacion === ESTADOS_VERIFICACION[0]}
                 alPresionar={() => cambiar('estadoVerificacion', ESTADOS_VERIFICACION[0])}
               />
@@ -575,25 +570,12 @@ function ContenidoPaso({
                 forma="tarjeta"
                 icono="buscar"
                 texto="Por verificar"
-                descripcion="La fuente es antigua o faltan datos. Hay que confirmarlo antes de publicar."
+                descripcion="Los datos pueden estar desactualizados o incompletos. Hay que confirmarlos antes de publicar."
                 seleccionada={f.estadoVerificacion === ESTADOS_VERIFICACION[1]}
                 alPresionar={() => cambiar('estadoVerificacion', ESTADOS_VERIFICACION[1])}
               />
             </View>
           </Grupo>
-          <CampoFormulario
-            {...campo('fuenteUrl')}
-            opcional
-            placeholder="https://..."
-            ayuda="Enlace de donde sacaste la información. Déjalo vacío si te la dio el mismo establecimiento."
-            autoCapitalize="none"
-            autoCorrect={false}
-          />
-          <CampoFormulario
-            {...campo('fechaConsulta')}
-            placeholder="AAAA-MM-DD"
-            ayuda="Día en que revisaste la información."
-          />
         </>
       );
 

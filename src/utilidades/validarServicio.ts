@@ -39,13 +39,6 @@ export function separarCoordenadas(texto: string) {
   return partes ? { latitud: partes[1], longitud: partes[2] } : null;
 }
 
-export function hoyIso() {
-  const ahora = new Date();
-  const mes = String(ahora.getMonth() + 1).padStart(2, '0');
-  const dia = String(ahora.getDate()).padStart(2, '0');
-  return `${ahora.getFullYear()}-${mes}-${dia}`;
-}
-
 const PATRON_CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Con o sin https://, como aparecen en el Excel ("facebook.com/...")
 const PATRON_WEB = /^(https?:\/\/)?[^\s/.]+(\.[^\s/.]+)+(\/\S*)?$/i;
@@ -144,19 +137,6 @@ export function validarServicio(entrada: unknown): ResultadoValidacion {
   if (estado && !ESTADOS_VERIFICACION.includes(estado as (typeof ESTADOS_VERIFICACION)[number])) {
     errores.estadoVerificacion = 'Elige una de las dos opciones.';
   }
-  const fuenteUrl = texto('fuenteUrl', null, 500);
-  if (fuenteUrl && !PATRON_WEB.test(fuenteUrl)) {
-    errores.fuenteUrl = 'Pega la dirección web completa de donde sacaste la información.';
-  }
-  const fechaConsulta = texto('fechaConsulta', 'Escribe la fecha de consulta.', 10);
-  if (fechaConsulta) {
-    const fecha = new Date(`${fechaConsulta}T00:00:00`);
-    if (!/^\d{4}-\d{2}-\d{2}$/.test(fechaConsulta) || Number.isNaN(fecha.getTime())) {
-      errores.fechaConsulta = 'Usa el formato AAAA-MM-DD, por ejemplo 2026-11-09.';
-    } else if (fechaConsulta > hoyIso()) {
-      errores.fechaConsulta = 'La fecha de consulta no puede ser futura.';
-    }
-  }
 
   if (Object.keys(errores).length > 0) {
     return { ok: false, errores };
@@ -183,8 +163,6 @@ export function validarServicio(entrada: unknown): ResultadoValidacion {
       servicios,
       capacidad,
       estadoVerificacion: estado as DatosServicio['estadoVerificacion'],
-      fuenteUrl,
-      fechaConsulta,
     },
   };
 }

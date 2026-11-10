@@ -63,13 +63,8 @@ export default function PantallaPanelAdmin() {
         {SECCIONES.map((seccion) =>
           seccion.ruta ? (
             <Link key={seccion.titulo} href={seccion.ruta} asChild>
-              <Pressable
-                style={({ pressed }) => [
-                  estilos.tarjeta,
-                  estilos.activa,
-                  pressed && estilos.presionada,
-                ]}
-              >
+              {/* Con asChild, Link solo acepta un objeto de estilo (ni arreglos ni funciones) */}
+              <Pressable style={estilos.tarjetaActiva}>
                 <ContenidoTarjeta seccion={seccion} />
                 <View style={estilos.abrir}>
                   <Text style={estilos.textoAbrir}>Abrir</Text>
@@ -98,6 +93,17 @@ function ContenidoTarjeta({ seccion }: { seccion: Seccion }) {
     </>
   );
 }
+
+const ESTILO_TARJETA = {
+  flexGrow: 1,
+  flexBasis: 240,
+  gap: ESPACIOS.s,
+  padding: ESPACIOS.xl,
+  borderRadius: RADIOS.tarjeta,
+  borderWidth: BORDES.tarjeta,
+  borderColor: COLORES.borde,
+  backgroundColor: COLORES.superficie,
+} as const;
 
 const estilos = StyleSheet.create({
   pantalla: {
@@ -131,21 +137,10 @@ const estilos = StyleSheet.create({
     flexWrap: 'wrap',
     gap: ESPACIOS.l,
   },
-  tarjeta: {
-    flexGrow: 1,
-    flexBasis: 240,
-    gap: ESPACIOS.s,
-    padding: ESPACIOS.xl,
-    borderRadius: RADIOS.tarjeta,
-    borderWidth: BORDES.tarjeta,
-    borderColor: COLORES.borde,
-    backgroundColor: COLORES.superficie,
-  },
-  activa: {
+  tarjeta: ESTILO_TARJETA,
+  tarjetaActiva: {
+    ...ESTILO_TARJETA,
     borderColor: COLORES.primario,
-  },
-  presionada: {
-    opacity: 0.85,
   },
   tituloTarjeta: {
     ...TIPOGRAFIA.titulo2,

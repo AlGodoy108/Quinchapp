@@ -30,9 +30,7 @@ export type DatosServicio = {
   servicios: string[];
   capacidad: string;
   estadoVerificacion: EstadoVerificacion;
-  fuenteUrl: string;
-  // Formato AAAA-MM-DD
-  fechaConsulta: string;
+  // Las columnas fuente_url y fecha_consulta del Excel no se guardan: eran notas de la recopilación
 };
 
 export type Servicio = DatosServicio & {

@@ -39,3 +39,6 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# datos reales (información privada): nunca se suben al repositorio
+datos/privado/

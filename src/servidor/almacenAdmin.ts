@@ -3,8 +3,9 @@
 // Cuando exista una base de datos real, solo hay que reemplazar este archivo.
 
 import { randomUUID } from 'node:crypto';
-import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+
+import { crearArchivoJson } from './archivoJson.ts';
 
 export type Admin = {
   id: string;
@@ -47,39 +48,18 @@ const ARCHIVO =
 
 const DATOS_VACIOS: DatosAdmin = { admins: [], sesiones: [], recuperaciones: [], intentos: {} };
 
-export async function leerDatosAdmin(): Promise<DatosAdmin> {
-  try {
-    const texto = await readFile(ARCHIVO, 'utf8');
-    return { ...DATOS_VACIOS, ...JSON.parse(texto) };
-  } catch (error) {
-    if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-      return structuredClone(DATOS_VACIOS);
-    }
-    throw error;
-  }
-}
+// Permisos 600: solo el usuario del computador puede leer el archivo
+const archivo = crearArchivoJson(ARCHIVO, DATOS_VACIOS, 0o600);
 
-// Las escrituras se hacen de a una para que dos peticiones simultáneas no se pisen
-let colaEscritura: Promise<unknown> = Promise.resolve();
+export const leerDatosAdmin = archivo.leer;
 
 export function modificarDatosAdmin<T>(cambio: (datos: DatosAdmin) => T): Promise<T> {
-  const tarea = colaEscritura.then(async () => {
-    const datos = await leerDatosAdmin();
+  return archivo.modificar((datos) => {
     const ahora = Date.now();
     datos.sesiones = datos.sesiones.filter((sesion) => sesion.expiraEn > ahora);
     datos.recuperaciones = datos.recuperaciones.filter((rec) => rec.expiraEn > ahora);
-
-    const resultado = cambio(datos);
-
-    // Se escribe en un archivo temporal y luego se renombra, así nunca queda un JSON a medias
-    await mkdir(path.dirname(ARCHIVO), { recursive: true });
-    const temporal = `${ARCHIVO}.${process.pid}.tmp`;
-    await writeFile(temporal, JSON.stringify(datos, null, 2), { mode: 0o600 });
-    await rename(temporal, ARCHIVO);
-    return resultado;
+    return cambio(datos);
   });
-  colaEscritura = tarea.catch(() => {});
-  return tarea;
 }
 
 export function normalizarCorreo(correo: string) {

@@ -7,22 +7,45 @@ type Props = Omit<TextInputProps, 'style' | 'value' | 'onChangeText'> & {
   valor: string;
   alCambiar: (texto: string) => void;
   ayuda?: string;
+  // Si hay error se muestra en rojo en lugar de la ayuda
+  error?: string;
+  opcional?: boolean;
 };
 
 // Campo de texto con su etiqueta arriba y un texto de ayuda opcional abajo
-export function CampoFormulario({ etiqueta, valor, alCambiar, ayuda, ...props }: Props) {
+export function CampoFormulario({
+  etiqueta,
+  valor,
+  alCambiar,
+  ayuda,
+  error,
+  opcional = false,
+  multiline,
+  ...props
+}: Props) {
   return (
     <View style={estilos.contenedor}>
-      <Text style={estilos.etiqueta}>{etiqueta}</Text>
+      <Text style={estilos.etiqueta}>
+        {etiqueta}
+        {opcional ? <Text style={estilos.opcional}> (opcional)</Text> : null}
+      </Text>
       <TextInput
-        style={estilos.campo}
+        style={[estilos.campo, multiline && estilos.multilinea, error ? estilos.campoError : null]}
         value={valor}
         onChangeText={alCambiar}
         placeholderTextColor={COLORES.textoSecundario}
         accessibilityLabel={etiqueta}
+        aria-invalid={Boolean(error)}
+        multiline={multiline}
         {...props}
       />
-      {ayuda ? <Text style={estilos.ayuda}>{ayuda}</Text> : null}
+      {error ? (
+        <Text style={estilos.error} accessibilityLiveRegion="polite">
+          {error}
+        </Text>
+      ) : ayuda ? (
+        <Text style={estilos.ayuda}>{ayuda}</Text>
+      ) : null}
     </View>
   );
 }
@@ -35,6 +58,10 @@ const estilos = StyleSheet.create({
     ...TIPOGRAFIA.titulo3,
     color: COLORES.texto,
   },
+  opcional: {
+    ...TIPOGRAFIA.pequeno,
+    color: COLORES.textoSecundario,
+  },
   campo: {
     ...TIPOGRAFIA.cuerpo,
     minHeight: 48,
@@ -45,8 +72,20 @@ const estilos = StyleSheet.create({
     backgroundColor: COLORES.superficie,
     color: COLORES.texto,
   },
+  multilinea: {
+    minHeight: 120,
+    paddingVertical: ESPACIOS.m,
+    textAlignVertical: 'top',
+  },
+  campoError: {
+    borderColor: COLORES.emergencia,
+  },
   ayuda: {
     ...TIPOGRAFIA.pequeno,
     color: COLORES.textoSecundario,
+  },
+  error: {
+    ...TIPOGRAFIA.pequeno,
+    color: COLORES.emergencia,
   },
 });

@@ -1,11 +1,24 @@
 // Llamadas a la API del panel de administración (src/app/api/admin/)
 
+import type { Servicio } from '@/tipos/servicio';
+import type { ErroresServicio } from '@/utilidades/validarServicio';
+
 export type AdminSesion = {
   correo: string;
   nombre: string;
 };
 
 export class ErrorSesion extends Error {}
+
+// El servidor rechazó algunos campos; errores dice cuáles y por qué
+export class ErrorValidacion extends Error {
+  constructor(
+    mensaje: string,
+    public errores: ErroresServicio,
+  ) {
+    super(mensaje);
+  }
+}
 
 async function pedir<T>(ruta: string, metodo: string, cuerpo?: object): Promise<T> {
   let respuesta: Response;
@@ -24,7 +37,10 @@ async function pedir<T>(ruta: string, metodo: string, cuerpo?: object): Promise<
   const datos = await respuesta.json().catch(() => ({}));
   if (!respuesta.ok) {
     const mensaje = datos.error ?? 'Ocurrió un error. Intenta de nuevo.';
-    throw respuesta.status === 401 ? new ErrorSesion(mensaje) : new Error(mensaje);
+    if (respuesta.status === 401) {
+      throw new ErrorSesion(mensaje);
+    }
+    throw datos.errores ? new ErrorValidacion(mensaje, datos.errores) : new Error(mensaje);
   }
   return datos as T;
 }
@@ -59,4 +75,9 @@ export async function restablecerContrasena(token: string, contrasena: string) {
     contrasena,
   });
   return mensaje;
+}
+
+export async function crearServicio(datos: object) {
+  const { servicio } = await pedir<{ servicio: Servicio }>('/api/admin/servicios', 'POST', datos);
+  return servicio;
 }

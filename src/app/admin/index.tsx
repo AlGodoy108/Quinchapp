@@ -1,10 +1,11 @@
-import { useState } from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Link, type Href } from 'expo-router';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
-import { Boton } from '@/componentes/Boton';
+import { BarraAdmin } from '@/componentes/BarraAdmin';
+import { ContenedorIcono } from '@/componentes/ContenedorIcono';
 import { Icono } from '@/componentes/Icono';
 import type { NombreIcono } from '@/constantes/iconos';
-import { BORDES, COLORES, ESPACIOS, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
+import { BORDES, COLORES, ESPACIOS, ICONO, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
 import { useSesionAdmin } from '@/hooks/useSesionAdmin';
 import { useTituloPagina } from '@/hooks/useTituloPagina';
 
@@ -12,14 +13,16 @@ type Seccion = {
   titulo: string;
   descripcion: string;
   icono: NombreIcono;
+  // Sin ruta: la sección todavía no está lista
+  ruta?: Href;
 };
 
-// Se irán activando a medida que se construyan
 const SECCIONES: Seccion[] = [
   {
     titulo: 'Agregar nuevo servicio',
     descripcion: 'Un asistente que pregunta cada dato del servicio, paso a paso.',
     icono: 'agregar',
+    ruta: '/admin/servicios/nuevo',
   },
   {
     titulo: 'Importar desde Excel',
@@ -39,37 +42,12 @@ const SECCIONES: Seccion[] = [
 ];
 
 export default function PantallaPanelAdmin() {
-  const { admin, salir } = useSesionAdmin();
-  const [saliendo, setSaliendo] = useState(false);
+  const { admin } = useSesionAdmin();
   useTituloPagina('Panel · Quinchapp');
-
-  async function cerrarSesion() {
-    setSaliendo(true);
-    await salir();
-  }
 
   return (
     <ScrollView style={estilos.pantalla} contentContainerStyle={estilos.contenido}>
-      <View style={estilos.barra}>
-        <Image
-          source={require('../../../assets/Base/LOGO ORIGINAL HORIZONTAL TRANSPARENCIA.png')}
-          style={estilos.logo}
-          resizeMode="contain"
-          accessibilityLabel="Municipalidad de Quinchao"
-        />
-        <View style={estilos.usuario}>
-          <View>
-            <Text style={estilos.nombre}>{admin?.nombre}</Text>
-            <Text style={estilos.correo}>{admin?.correo}</Text>
-          </View>
-          <Boton
-            texto={saliendo ? 'Cerrando…' : 'Cerrar sesión'}
-            alPresionar={cerrarSesion}
-            variante="secundario"
-            desactivado={saliendo}
-          />
-        </View>
-      </View>
+      <BarraAdmin />
 
       <View style={estilos.textos}>
         <Text style={estilos.etiqueta}>Panel de administración</Text>
@@ -82,18 +60,42 @@ export default function PantallaPanelAdmin() {
       </View>
 
       <View style={estilos.grilla}>
-        {SECCIONES.map((seccion) => (
-          <View key={seccion.titulo} style={estilos.tarjeta}>
-            <View style={estilos.icono}>
-              <Icono nombre={seccion.icono} />
+        {SECCIONES.map((seccion) =>
+          seccion.ruta ? (
+            <Link key={seccion.titulo} href={seccion.ruta} asChild>
+              <Pressable
+                style={({ pressed }) => [
+                  estilos.tarjeta,
+                  estilos.activa,
+                  pressed && estilos.presionada,
+                ]}
+              >
+                <ContenidoTarjeta seccion={seccion} />
+                <View style={estilos.abrir}>
+                  <Text style={estilos.textoAbrir}>Abrir</Text>
+                  <Icono nombre="flechaDerecha" tamano={ICONO.pequeno} />
+                </View>
+              </Pressable>
+            </Link>
+          ) : (
+            <View key={seccion.titulo} style={estilos.tarjeta}>
+              <ContenidoTarjeta seccion={seccion} />
+              <Text style={estilos.pronto}>Próximamente</Text>
             </View>
-            <Text style={estilos.tituloTarjeta}>{seccion.titulo}</Text>
-            <Text style={estilos.descripcion}>{seccion.descripcion}</Text>
-            <Text style={estilos.pronto}>Próximamente</Text>
-          </View>
-        ))}
+          ),
+        )}
       </View>
     </ScrollView>
+  );
+}
+
+function ContenidoTarjeta({ seccion }: { seccion: Seccion }) {
+  return (
+    <>
+      <ContenedorIcono nombre={seccion.icono} />
+      <Text style={estilos.tituloTarjeta}>{seccion.titulo}</Text>
+      <Text style={estilos.descripcion}>{seccion.descripcion}</Text>
+    </>
   );
 }
 
@@ -108,33 +110,6 @@ const estilos = StyleSheet.create({
     alignSelf: 'center',
     gap: ESPACIOS.xxl,
     padding: ESPACIOS.l,
-  },
-  barra: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: ESPACIOS.l,
-    paddingBottom: ESPACIOS.l,
-    borderBottomWidth: BORDES.tarjeta,
-    borderBottomColor: COLORES.borde,
-  },
-  logo: {
-    width: 180,
-    height: 60,
-  },
-  usuario: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: ESPACIOS.l,
-  },
-  nombre: {
-    ...TIPOGRAFIA.titulo3,
-    color: COLORES.texto,
-  },
-  correo: {
-    ...TIPOGRAFIA.pequeno,
-    color: COLORES.textoSecundario,
   },
   textos: {
     gap: ESPACIOS.xs,
@@ -166,17 +141,25 @@ const estilos = StyleSheet.create({
     borderColor: COLORES.borde,
     backgroundColor: COLORES.superficie,
   },
-  icono: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: RADIOS.icono,
-    backgroundColor: COLORES.iconoFondo,
+  activa: {
+    borderColor: COLORES.primario,
+  },
+  presionada: {
+    opacity: 0.85,
   },
   tituloTarjeta: {
     ...TIPOGRAFIA.titulo2,
     color: COLORES.texto,
+  },
+  abrir: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: ESPACIOS.xs,
+    marginTop: ESPACIOS.xs,
+  },
+  textoAbrir: {
+    ...TIPOGRAFIA.titulo3,
+    color: COLORES.primario,
   },
   pronto: {
     ...TIPOGRAFIA.etiqueta,

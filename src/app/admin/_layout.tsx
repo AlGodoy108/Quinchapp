@@ -42,6 +42,7 @@ function NavegadorAdmin() {
       <Stack screenOptions={{ headerShown: false, contentStyle: estilos.contenido }}>
         <Stack.Protected guard={conSesion} redirectTo="/admin/ingresar">
           <Stack.Screen name="index" />
+          <Stack.Screen name="servicios/nuevo" />
         </Stack.Protected>
         <Stack.Protected guard={!conSesion} redirectTo="/admin">
           <Stack.Screen name="ingresar" />

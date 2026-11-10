@@ -43,6 +43,7 @@ function NavegadorAdmin() {
         <Stack.Protected guard={conSesion} redirectTo="/admin/ingresar">
           <Stack.Screen name="index" />
           <Stack.Screen name="servicios/nuevo" />
+          <Stack.Screen name="servicios/importar" />
         </Stack.Protected>
         <Stack.Protected guard={!conSesion} redirectTo="/admin">
           <Stack.Screen name="ingresar" />

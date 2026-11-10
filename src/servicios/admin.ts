@@ -1,5 +1,6 @@
 // Llamadas a la API del panel de administración (src/app/api/admin/)
 
+import type { FilaPlanilla, ResultadoFila } from '@/tipos/importacion';
 import type { Servicio } from '@/tipos/servicio';
 import type { ErroresServicio } from '@/utilidades/validarServicio';
 
@@ -80,4 +81,13 @@ export async function restablecerContrasena(token: string, contrasena: string) {
 export async function crearServicio(datos: object) {
   const { servicio } = await pedir<{ servicio: Servicio }>('/api/admin/servicios', 'POST', datos);
   return servicio;
+}
+
+// confirmar = false: solo vista previa. confirmar = true: guarda las filas válidas y nuevas.
+export async function importarServicios(filas: FilaPlanilla[], confirmar: boolean) {
+  return pedir<{ resultados: ResultadoFila[]; guardados: number }>(
+    '/api/admin/servicios/importar',
+    'POST',
+    { filas, confirmar },
+  );
 }

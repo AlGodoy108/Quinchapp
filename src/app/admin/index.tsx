@@ -26,8 +26,9 @@ const SECCIONES: Seccion[] = [
   },
   {
     titulo: 'Importar desde Excel',
-    descripcion: 'Sube la planilla de oferta turística, revisa la vista previa y confirma.',
+    descripcion: 'Sube el Excel de oferta turística, revisa la vista previa y confirma.',
     icono: 'planilla',
+    ruta: '/admin/servicios/importar',
   },
   {
     titulo: 'Servicios y clientes',

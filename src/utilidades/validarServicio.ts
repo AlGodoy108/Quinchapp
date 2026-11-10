@@ -40,8 +40,6 @@ export function separarCoordenadas(texto: string) {
 }
 
 const PATRON_CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-// Con o sin https://, como aparecen en el Excel ("facebook.com/...")
-const PATRON_WEB = /^(https?:\/\/)?[^\s/.]+(\.[^\s/.]+)+(\/\S*)?$/i;
 
 export function validarServicio(entrada: unknown): ResultadoValidacion {
   const crudo = (typeof entrada === 'object' && entrada !== null ? entrada : {}) as Record<
@@ -106,10 +104,8 @@ export function validarServicio(entrada: unknown): ResultadoValidacion {
   if (email && !PATRON_CORREO.test(email)) {
     errores.email = 'El correo no parece válido (ejemplo: contacto@negocio.cl).';
   }
+  // Puede ser una dirección web o dónde está publicado ("Booking.com (Cabaña ...)"), como en el Excel
   const sitioWeb = texto('sitioWeb', null, 300);
-  if (sitioWeb && !PATRON_WEB.test(sitioWeb)) {
-    errores.sitioWeb = 'La dirección web no parece válida (ejemplo: www.negocio.cl).';
-  }
   const redesSociales = texto('redesSociales', null, 300);
   const horario = texto('horario', 'Escribe el horario o marca "Consultar".', 200);
   const precioReferencia = texto('precioReferencia', 'Escribe el precio o marca "Consultar".', 200);

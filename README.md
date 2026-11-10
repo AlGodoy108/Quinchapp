@@ -64,6 +64,10 @@ Si cambias una ruta API (`src/app/api/`) y no ves el cambio, reinicia `npm start
 
 El Excel de ejemplo con datos ficticios está en `datos/ejemplo/`. El Excel con datos reales va en `datos/privado/` y nunca se sube.
 
+**Importar desde Excel:** lee la hoja `Datos` (mismas columnas que el Excel de ejemplo), muestra una vista previa con las filas listas, repetidas o con errores, y guarda solo las listas. Las columnas `id`, `fuente_url` y `fecha_consulta` no se importan.
+
+Los servicios guardados (con el formulario o importados) quedan en `datos/servicios.json`, que **sí** se sube a GitHub y el repositorio es público: no importes ahí datos que no deban ser públicos.
+
 ## Estructura del proyecto
 
 ```

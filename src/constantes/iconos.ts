@@ -34,6 +34,10 @@ import {
   Type,
   Utensils,
   X,
+  Upload,
+  CircleCheck,
+  CircleAlert,
+  Copy,
 } from 'lucide-react-native';
 
 // Íconos Lucide: el mismo set que usa el Figma (Ícono/gastronomia = Utensils, etc.)
@@ -68,6 +72,10 @@ export const ICONOS = {
   etiqueta: Tag,
   verificado: ShieldCheck,
   revisar: ClipboardCheck,
+  subir: Upload,
+  correcto: CircleCheck,
+  alerta: CircleAlert,
+  repetido: Copy,
   // Categorías del Excel de oferta turística que no tenían ícono
   camping: Tent,
   cabanas: House,

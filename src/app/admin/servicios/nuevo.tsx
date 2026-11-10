@@ -28,6 +28,7 @@ import {
   TEXTO_CONSULTAR,
   TEXTO_SIN_DIRECCION,
 } from '@/constantes/categoriasServicio';
+import { ETIQUETAS_CAMPOS_SERVICIO } from '@/constantes/camposServicio';
 import type { NombreIcono } from '@/constantes/iconos';
 import { BORDES, COLORES, ESPACIOS, ICONO, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
 import { useSesionAdmin } from '@/hooks/useSesionAdmin';
@@ -141,27 +142,7 @@ const PASOS: Paso[] = [
   },
 ];
 
-const ETIQUETAS: Record<Campo, string> = {
-  categoria: 'Categoría',
-  subcategoria: 'Subcategoría',
-  nombre: 'Nombre',
-  descripcion: 'Descripción',
-  direccion: 'Dirección',
-  localidad: 'Localidad',
-  comuna: 'Comuna',
-  region: 'Región',
-  latitud: 'Latitud',
-  longitud: 'Longitud',
-  telefono: 'Teléfono',
-  email: 'Correo',
-  sitioWeb: 'Sitio web',
-  redesSociales: 'Redes sociales',
-  horario: 'Horario',
-  precioReferencia: 'Precio de referencia',
-  servicios: 'Servicios',
-  capacidad: 'Capacidad',
-  estadoVerificacion: 'Estado de verificación',
-};
+const ETIQUETAS = ETIQUETAS_CAMPOS_SERVICIO;
 
 export default function PantallaNuevoServicio() {
   const { sesionVencida } = useSesionAdmin();
@@ -497,6 +478,7 @@ function ContenidoPaso({
             {...campo('sitioWeb')}
             opcional
             placeholder="Ej: www.negocio.cl"
+            ayuda="La página del negocio, o dónde está publicado (por ejemplo: Booking.com)."
             autoCapitalize="none"
             autoCorrect={false}
           />

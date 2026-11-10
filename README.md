@@ -36,15 +36,33 @@ npx expo start --tunnel
 
 ## Scripts disponibles
 
-| Comando                | Qué hace                                   |
-| ---------------------- | ------------------------------------------ |
-| `npm start`            | Inicia el servidor de desarrollo           |
-| `npm run android`      | Abre la app en un emulador Android         |
-| `npm run web`          | Abre la app en el navegador                |
-| `npm run lint`         | Revisa el código con ESLint                |
-| `npm run format`       | Formatea todo el código con Prettier       |
-| `npm run format:check` | Verifica el formato sin modificar archivos |
-| `npm run typecheck`    | Revisa los tipos de TypeScript             |
+| Comando                | Qué hace                                    |
+| ---------------------- | ------------------------------------------- |
+| `npm start`            | Inicia el servidor de desarrollo            |
+| `npm run android`      | Abre la app en un emulador Android          |
+| `npm run web`          | Abre la app en el navegador                 |
+| `npm run lint`         | Revisa el código con ESLint                 |
+| `npm run format`       | Formatea todo el código con Prettier        |
+| `npm run format:check` | Verifica el formato sin modificar archivos  |
+| `npm run typecheck`    | Revisa los tipos de TypeScript              |
+| `npm run admin:crear`  | Crea una cuenta del panel de administración |
+
+## Panel de administración (web)
+
+El panel para cargar servicios turísticos funciona **solo en el navegador** y vive en la misma app.
+
+1. Crea tu cuenta de administrador (no hay registro público):
+   ```bash
+   npm run admin:crear
+   ```
+   Si el correo ya existe, el comando le cambia la contraseña.
+2. Inicia el servidor con `npm start` y abre [http://localhost:8081/admin](http://localhost:8081/admin).
+3. **Recuperar contraseña:** por ahora no se envían correos de verdad. El enlace aparece en la terminal donde corre `npm start`.
+
+Las cuentas y sesiones se guardan en `datos/privado/admin.json`, que **no** se sube a GitHub: cada integrante crea su propia cuenta en su computador.
+Si cambias una ruta API (`src/app/api/`) y no ves el cambio, reinicia `npm start`.
+
+El Excel de ejemplo con datos ficticios está en `datos/ejemplo/`. El Excel con datos reales va en `datos/privado/` y nunca se sube.
 
 ## Estructura del proyecto
 
@@ -53,13 +71,18 @@ src/
 ├── app/           Pantallas y rutas (Expo Router): cada archivo es una pantalla
 │   ├── _layout.tsx    Layout raíz de la app
 │   ├── (tabs)/        Pestañas: Inicio, Mapa, Categorías y Lugares
-│   └── lugar/[id].tsx Detalle de un lugar
+│   ├── lugar/[id].tsx Detalle de un lugar
+│   ├── admin/         Panel de administración (solo web)
+│   └── api/           Rutas API del servidor (archivos +api.ts)
 ├── componentes/   Componentes visuales reutilizables
 ├── hooks/         Hooks personalizados (useAlgo)
 ├── constantes/    Tema (estilos), íconos, categorías y datos de ejemplo
 ├── servicios/     Llamadas a APIs y almacenamiento (por ahora, los lugares de ejemplo)
+├── servidor/      Código que corre solo en el servidor (contraseñas, sesiones)
 ├── utilidades/    Funciones auxiliares sin React
 └── tipos/         Tipos e interfaces de TypeScript compartidos
+herramientas/      Comandos de terminal (npm run admin:crear)
+datos/             Excel de ejemplo (datos/ejemplo) y datos privados (datos/privado, no se sube)
 assets/            Imágenes, íconos y fuentes
 ```
 

@@ -2,8 +2,11 @@ import {
   ArrowRight,
   BedDouble,
   ChevronRight,
+  CirclePlus,
   Clock3,
+  FileSpreadsheet,
   House,
+  ImagePlus,
   Landmark,
   LayoutGrid,
   List,
@@ -37,6 +40,10 @@ export const ICONOS = {
   museos: Landmark,
   navegaciones: Sailboat,
   actividades: Mountain,
+  // Panel de administración
+  agregar: CirclePlus,
+  planilla: FileSpreadsheet,
+  imagen: ImagePlus,
 };
 
 export type NombreIcono = keyof typeof ICONOS;

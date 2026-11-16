@@ -151,6 +151,21 @@ export const ESPACIOS = {
   xxl: 24,
 };
 
+// Marco de teléfono que se ve solo al abrir la app en el navegador del computador.
+// El tamaño es el de un teléfono típico (390 x 844, como un iPhone 14).
+export const MARCO_WEB = {
+  ancho: 390,
+  alto: 844,
+  radio: 44,
+  grosor: 10,
+  // Espacio que deja la barra de estado (hora, batería) en un teléfono real
+  barraEstado: 24,
+  colorMarco: PALETA.neutro[900],
+  fondoPagina: PALETA.neutro[200],
+  // Bajo este ancho de ventana (ej. un celular real) no se dibuja el marco
+  anchoMinimoVentana: 500,
+};
+
 // Íconos de línea (Lucide), igual que en el Figma
 export const ICONO = {
   trazo: 2,

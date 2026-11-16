@@ -1,3 +1,4 @@
+import { usePathname } from 'expo-router';
 import type { ReactNode } from 'react';
 import { StyleSheet, useWindowDimensions, View } from 'react-native';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
@@ -13,10 +14,13 @@ type Props = {
 
 // En el navegador del computador muestra la app dentro de un marco con el tamaño de un teléfono,
 // para revisar el diseño como se vería en el celular. En pantallas angostas se ve normal.
+// El panel de administración (/admin) se usa en el computador, así que va sin marco.
 export function MarcoTelefono({ children }: Props) {
   const { width: anchoVentana } = useWindowDimensions();
+  const ruta = usePathname();
+  const esPanelAdmin = ruta === '/admin' || ruta.startsWith('/admin/');
 
-  if (anchoVentana < MARCO_WEB.anchoMinimoVentana) {
+  if (esPanelAdmin || anchoVentana < MARCO_WEB.anchoMinimoVentana) {
     return children;
   }
 

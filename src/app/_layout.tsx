@@ -9,6 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 
+import { MarcoTelefono } from '@/componentes/MarcoTelefono';
 import { COLORES, TIPOGRAFIA } from '@/constantes/tema';
 
 SplashScreen.preventAutoHideAsync();
@@ -31,7 +32,7 @@ export default function LayoutRaiz() {
   }
 
   return (
-    <>
+    <MarcoTelefono>
       <Stack
         screenOptions={{
           headerStyle: { backgroundColor: COLORES.fondo },
@@ -46,6 +47,6 @@ export default function LayoutRaiz() {
         <Stack.Screen name="admin" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="dark" />
-    </>
+    </MarcoTelefono>
   );
 }

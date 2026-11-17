@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet, Text } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { EstadoVacio } from '@/componentes/EstadoVacio';
 import { FilaLugar } from '@/componentes/FilaLugar';
 import { COLORES, ESPACIOS, TIPOGRAFIA } from '@/constantes/tema';
 import type { Lugar } from '@/tipos/lugar';
@@ -20,9 +21,16 @@ export function MapaLugares({ lugares, alAbrirLugar }: Props) {
       contentContainerStyle={[estilos.contenido, { paddingTop: margenes.top + 72 }]}
     >
       <Text style={estilos.aviso}>El mapa solo se ve en el celular con Expo Go.</Text>
-      {lugares.map((lugar) => (
-        <FilaLugar key={lugar.id} lugar={lugar} alPresionar={() => alAbrirLugar(lugar)} />
-      ))}
+      {lugares.length === 0 ? (
+        <EstadoVacio
+          titulo="No hay lugares para mostrar"
+          descripcion="Todavía no hay lugares registrados en esta categoría."
+        />
+      ) : (
+        lugares.map((lugar) => (
+          <FilaLugar key={lugar.id} lugar={lugar} alPresionar={() => alAbrirLugar(lugar)} />
+        ))
+      )}
     </ScrollView>
   );
 }

@@ -6,6 +6,7 @@ import { Icono } from '@/componentes/Icono';
 import { obtenerCategoria } from '@/constantes/categorias';
 import { BORDES, COLORES, ESPACIOS, ICONO, RADIOS, TIPOGRAFIA } from '@/constantes/tema';
 import type { Lugar } from '@/tipos/lugar';
+import { TEXTOS_PENDIENTES, textoONada } from '@/utilidades/datosLugar';
 
 type Props = {
   lugar: Lugar;
@@ -14,6 +15,7 @@ type Props = {
 
 export function FilaLugar({ lugar, alPresionar }: Props) {
   const categoria = obtenerCategoria(lugar.categoriaId);
+  const horario = textoONada(lugar.horario);
 
   return (
     <Pressable style={estilos.fila} onPress={alPresionar} accessibilityRole="button">
@@ -23,7 +25,7 @@ export function FilaLugar({ lugar, alPresionar }: Props) {
           {lugar.nombre}
         </Text>
         <Text style={estilos.horario} numberOfLines={1}>
-          {lugar.horario}
+          {horario ?? TEXTOS_PENDIENTES.horario}
         </Text>
         <Estrellas valor={lugar.estrellas} />
       </View>

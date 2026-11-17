@@ -10,6 +10,12 @@ export const REGION_QUINCHAO = {
 
 // DATOS INVENTADOS para el maquetado: nombres, horarios, estrellas y coordenadas no son reales.
 // Hay que reemplazarlos por los datos reales antes de publicar la app.
+// Algunos lugares tienen datos incompletos A PROPÓSITO, para probar cómo se ven los avisos:
+// - Comida donde Juanito: ficha completa (contacto, dirección, ubicación confirmada)
+// - Hostal Bahía: solo teléfono, el correo dice "Consultar"
+// - Parque Costanera: ubicación sin confirmar (punto aproximado)
+// - Museo de la Isla: sin descripción y horario "Consultar"
+// - Kayak Quinchao: sin ubicación en el mapa y sin calificación
 export const LUGARES_EJEMPLO: Lugar[] = [
   {
     id: 'comida-donde-juanito',
@@ -19,7 +25,14 @@ export const LUGARES_EJEMPLO: Lugar[] = [
     horario: '12:00 - 22:00',
     estrellas: 4.6,
     destacado: true,
+    direccion: 'Calle Demo 120, Achao',
+    contacto: {
+      telefono: '+56 9 0000 0101',
+      email: 'contacto@juanito.example',
+      sitioWeb: 'https://example.com/juanito',
+    },
     coordenadas: { latitude: -42.4712, longitude: -73.4888 },
+    ubicacionConfirmada: true,
   },
   {
     id: 'cocineria-las-brisas',
@@ -49,6 +62,7 @@ export const LUGARES_EJEMPLO: Lugar[] = [
     horario: 'Recepción 24 horas',
     estrellas: 4.7,
     destacado: true,
+    contacto: { telefono: '+56 9 0000 0104', email: 'Consultar' },
     coordenadas: { latitude: -42.4759, longitude: -73.4902 },
   },
   {
@@ -70,13 +84,14 @@ export const LUGARES_EJEMPLO: Lugar[] = [
     estrellas: 4.3,
     destacado: false,
     coordenadas: { latitude: -42.4786, longitude: -73.4849 },
+    ubicacionConfirmada: false,
   },
   {
     id: 'museo-de-la-isla',
     nombre: 'Museo de la Isla',
     categoriaId: 'museos',
-    descripcion: 'Texto de ejemplo: historia y tradiciones de la zona.',
-    horario: '10:00 - 18:00',
+    descripcion: '',
+    horario: 'Consultar',
     estrellas: 4.5,
     destacado: false,
     coordenadas: { latitude: -42.4723, longitude: -73.4941 },
@@ -97,8 +112,6 @@ export const LUGARES_EJEMPLO: Lugar[] = [
     categoriaId: 'actividades',
     descripcion: 'Texto de ejemplo: salidas guiadas en kayak.',
     horario: '09:00 - 17:00',
-    estrellas: 4.1,
     destacado: true,
-    coordenadas: { latitude: -42.4811, longitude: -73.4917 },
   },
 ];

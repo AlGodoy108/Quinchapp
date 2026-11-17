@@ -1,6 +1,7 @@
 import { router, useLocalSearchParams } from 'expo-router';
-import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
+import { FlatList, Pressable, StyleSheet, Text } from 'react-native';
 
+import { EstadoVacio } from '@/componentes/EstadoVacio';
 import { FilaLugar } from '@/componentes/FilaLugar';
 import { Icono } from '@/componentes/Icono';
 import { obtenerCategoria } from '@/constantes/categorias';
@@ -35,9 +36,19 @@ export default function PantallaLugares() {
         ) : undefined
       }
       ListEmptyComponent={
-        <View style={estilos.vacio}>
-          <Text style={estilos.textoVacio}>No encontramos lugares con ese filtro.</Text>
-        </View>
+        filtroActivo ? (
+          <EstadoVacio
+            titulo="No encontramos lugares"
+            descripcion={`No hay resultados para ${filtroActivo}. Prueba con otra palabra o categoría.`}
+            textoBoton="Ver todos los lugares"
+            alPresionarBoton={() => router.setParams({ categoria: '', busqueda: '' })}
+          />
+        ) : (
+          <EstadoVacio
+            titulo="Aún no hay lugares"
+            descripcion="Estamos reuniendo la información de Quinchao. Vuelve pronto."
+          />
+        )
       }
       renderItem={({ item: lugar }) => (
         <FilaLugar
@@ -73,13 +84,5 @@ const estilos = StyleSheet.create({
     ...TIPOGRAFIA.boton,
     fontSize: 13,
     color: COLORES.sobrePrimario,
-  },
-  vacio: {
-    paddingVertical: 48,
-    alignItems: 'center',
-  },
-  textoVacio: {
-    ...TIPOGRAFIA.cuerpo,
-    color: COLORES.textoSecundario,
   },
 });

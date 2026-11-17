@@ -4,6 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { Buscador } from '@/componentes/Buscador';
 import { CirculoCategoria } from '@/componentes/CirculoCategoria';
+import { EstadoVacio } from '@/componentes/EstadoVacio';
 import { EncabezadoSeccion } from '@/componentes/EncabezadoSeccion';
 import { Icono } from '@/componentes/Icono';
 import { TarjetaLugar } from '@/componentes/TarjetaLugar';
@@ -13,6 +14,7 @@ import { obtenerLugaresDestacados } from '@/servicios/lugares';
 
 export default function PantallaInicio() {
   const margenes = useSafeAreaInsets();
+  const destacados = obtenerLugaresDestacados();
 
   return (
     <ScrollView
@@ -92,19 +94,29 @@ export default function PantallaInicio() {
           router.navigate({ pathname: '/lugares', params: { categoria: '', busqueda: '' } })
         }
       />
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={estilos.carruselTarjetas}
-      >
-        {obtenerLugaresDestacados().map((lugar) => (
-          <TarjetaLugar
-            key={lugar.id}
-            lugar={lugar}
-            alPresionar={() => router.push({ pathname: '/lugar/[id]', params: { id: lugar.id } })}
+      {destacados.length === 0 ? (
+        <View style={estilos.bloque}>
+          <EstadoVacio
+            compacto
+            titulo="Pronto habrá lugares destacados"
+            descripcion="Mientras tanto, explora las categorías o el mapa."
           />
-        ))}
-      </ScrollView>
+        </View>
+      ) : (
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={estilos.carruselTarjetas}
+        >
+          {destacados.map((lugar) => (
+            <TarjetaLugar
+              key={lugar.id}
+              lugar={lugar}
+              alPresionar={() => router.push({ pathname: '/lugar/[id]', params: { id: lugar.id } })}
+            />
+          ))}
+        </ScrollView>
+      )}
     </ScrollView>
   );
 }

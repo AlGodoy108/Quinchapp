@@ -37,6 +37,9 @@ export default function PantallaDetalleLugar() {
   const descripcion = textoONada(lugar.descripcion);
   const horario = textoONada(lugar.horario);
   const direccion = textoONada(lugar.direccion);
+  const precio = textoONada(lugar.precio);
+  const capacidad = textoONada(lugar.capacidad);
+  const servicios = (lugar.servicios ?? []).filter((servicio) => textoONada(servicio));
   const conUbicacion = tieneUbicacion(lugar);
   const ubicacionSinConfirmar = conUbicacion && lugar.ubicacionConfirmada === false;
 
@@ -56,11 +59,20 @@ export default function PantallaDetalleLugar() {
       <ImagenLugar foto={lugar.foto} nombreLugar={lugar.nombre} />
 
       <View style={estilos.tarjeta}>
-        {categoria && <Text style={estilos.categoria}>{categoria.nombre}</Text>}
+        {categoria && (
+          <Text style={estilos.categoria}>
+            {[categoria.nombre, lugar.subcategoria].filter(Boolean).join(' · ')}
+          </Text>
+        )}
         <Text style={estilos.nombre}>{lugar.nombre}</Text>
         <Estrellas valor={lugar.estrellas} />
 
         <Dato icono="horario" texto={horario} pendiente={TEXTOS_PENDIENTES.horario} />
+        <Dato icono="precio" texto={precio} pendiente={TEXTOS_PENDIENTES.precio} />
+        {capacidad && <Dato icono="capacidad" texto={capacidad} pendiente="" />}
+        {servicios.length > 0 && (
+          <Dato icono="servicios" texto={servicios.join(' · ')} pendiente="" />
+        )}
         <Dato
           icono={conUbicacion ? 'ubicacion' : 'sinUbicacion'}
           texto={direccion}

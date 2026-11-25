@@ -1,0 +1,697 @@
+[
+  {
+    "id": "cam-001",
+    "nombre": "Camping Los Arrayanes del Puerto",
+    "categoriaId": "camping",
+    "subcategoria": "Camping urbano",
+    "descripcion": "Camping familiar a pasos de la costanera, con sitios techados y quincho común.",
+    "horario": "Temporada estival (consultar)",
+    "precio": "$6.000 por persona/noche (referencial)",
+    "servicios": ["Ducha agua caliente", "Quincho", "Electricidad por sitio"],
+    "destacado": true,
+    "direccion": "Pasaje Ficticio 120, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0101",
+      "email": "contacto@campinglosarrayanesdel.example",
+      "redesSociales": "instagram.com/ejemplo_campinglosarrayanesdel"
+    },
+    "coordenadas": {
+      "latitude": -42.470831,
+      "longitude": -73.493908
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "cam-002",
+    "nombre": "Camping Bosque de Ejemplo",
+    "categoriaId": "camping",
+    "subcategoria": "Camping rural",
+    "descripcion": "Sitios entre árboles nativos con vista al canal, ideal para carpas pequeñas.",
+    "servicios": ["Baños", "Fogón", "Leña"],
+    "destacado": false,
+    "direccion": "Camino Inventado km 2, Putique, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0102"
+    },
+    "coordenadas": {
+      "latitude": -42.482296,
+      "longitude": -73.462856
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "cam-003",
+    "nombre": "Camping Mirador de Prueba",
+    "categoriaId": "camping",
+    "subcategoria": "Camping rural",
+    "descripcion": "Camping con terrazas y áreas verdes, a 10 minutos del centro.",
+    "servicios": ["Áreas verdes"],
+    "destacado": false,
+    "direccion": "Coñab, Achao",
+    "contacto": {},
+    "coordenadas": {
+      "latitude": -42.4957691,
+      "longitude": -73.495832
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "cab-001",
+    "nombre": "Cabañas Bruma Azul",
+    "categoriaId": "cabanas",
+    "subcategoria": "Cabaña urbana",
+    "descripcion": "Cabañas de madera nativa equipadas, a tres cuadras de la plaza.",
+    "horario": "Check-in 15:00 / Check-out 11:00",
+    "precio": "$45.000 por noche (referencial)",
+    "capacidad": "Hasta 5 personas por cabaña",
+    "servicios": ["Cocina equipada", "Wifi", "Estacionamiento", "Calefacción a leña"],
+    "destacado": true,
+    "direccion": "Calle Demo 455, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0104",
+      "email": "contacto@cabañasbrumaazul.example",
+      "sitioWeb": "https://cabañasbrumaazul.example",
+      "redesSociales": "instagram.com/ejemplo_cabañasbrumaazul"
+    },
+    "coordenadas": {
+      "latitude": -42.477306,
+      "longitude": -73.49001
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "cab-002",
+    "nombre": "Cabañas Marea Ficticia",
+    "categoriaId": "cabanas",
+    "subcategoria": "Cabaña frente al mar",
+    "descripcion": "Dos cabañas con terraza sobre el mar y acceso a playa de piedras.",
+    "horario": "Check-in 14:00 / Check-out 12:00",
+    "precio": "$55.000 por noche (referencial)",
+    "capacidad": "5 personas (2 dormitorios)",
+    "servicios": ["Terraza", "Parrilla", "Wifi"],
+    "destacado": false,
+    "direccion": "Costanera Ejemplo 88, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0105",
+      "redesSociales": "instagram.com/ejemplo_cabañasmareaficticia"
+    },
+    "coordenadas": {
+      "latitude": -42.473559,
+      "longitude": -73.492593
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "cab-003",
+    "nombre": "Cabañas Campo de Muestra",
+    "categoriaId": "cabanas",
+    "subcategoria": "Cabaña rural",
+    "descripcion": "Cabañas en predio rural con huerta y animales de granja.",
+    "servicios": ["Huerta", "Estacionamiento"],
+    "destacado": false,
+    "direccion": "Parcela 7, sector inventado, Villa Quinchao",
+    "contacto": {
+      "telefono": "+56 9 0000 0106"
+    },
+    "coordenadas": {
+      "latitude": -42.535976,
+      "longitude": -73.4269749
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "hot-001",
+    "nombre": "Hotel Tejuela de Ejemplo",
+    "categoriaId": "hoteles",
+    "subcategoria": "Hotel boutique",
+    "descripcion": "Hotel boutique de 12 habitaciones con desayuno chilote incluido.",
+    "horario": "Recepción 24 h",
+    "precio": "Desde $70.000 habitación doble (referencial)",
+    "capacidad": "12 habitaciones",
+    "servicios": ["Desayuno", "Wifi", "Estacionamiento", "Sala de estar"],
+    "destacado": true,
+    "direccion": "Av. Ficticia 301, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0107",
+      "email": "contacto@hoteltejueladeejemplo.example",
+      "sitioWeb": "https://hoteltejueladeejemplo.example",
+      "redesSociales": "instagram.com/ejemplo_hoteltejueladeejemplo"
+    },
+    "coordenadas": {
+      "latitude": -42.467277,
+      "longitude": -73.481732
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "hot-002",
+    "nombre": "Hostería Faro de Prueba",
+    "categoriaId": "hoteles",
+    "subcategoria": "Hostería",
+    "descripcion": "Hostería con restaurante propio y vista a la bahía.",
+    "horario": "Recepción 08:00 - 23:00",
+    "precio": "Desde $50.000 habitación doble (referencial)",
+    "capacidad": "9 habitaciones / 20 huéspedes",
+    "servicios": ["Restaurante", "Wifi", "Desayuno"],
+    "destacado": false,
+    "direccion": "Calle Demo 12, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0108",
+      "email": "contacto@hosteríafarodeprueba.example"
+    },
+    "coordenadas": {
+      "latitude": -42.468153,
+      "longitude": -73.490496
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "hot-003",
+    "nombre": "Hotel Pradera Inventada",
+    "categoriaId": "hoteles",
+    "subcategoria": "Hotel rural",
+    "descripcion": "Hotel rural con tinajas calientes y paseos guiados.",
+    "servicios": ["Tinajas", "Desayuno", "Paseos guiados"],
+    "destacado": false,
+    "direccion": "Ruta Ejemplo km 5, Villa Quinchao",
+    "contacto": {
+      "telefono": "+56 9 0000 0109",
+      "email": "contacto@hotelpraderainventada.example",
+      "sitioWeb": "https://hotelpraderainventada.example"
+    },
+    "coordenadas": {
+      "latitude": -42.535976,
+      "longitude": -73.4269749
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "apt-001",
+    "nombre": "Departamentos Muelle de Muestra",
+    "categoriaId": "departamentos",
+    "subcategoria": "Departamentos equipados",
+    "descripcion": "Departamentos amoblados para estadías cortas y largas.",
+    "horario": "Check-in 15:00",
+    "precio": "$40.000 por noche (referencial)",
+    "capacidad": "Hasta 4 personas",
+    "servicios": ["Cocina equipada", "Wifi", "Lavadora"],
+    "destacado": true,
+    "direccion": "Pasaje Ficticio 40, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0110",
+      "email": "contacto@departamentosmuelledem.example"
+    },
+    "coordenadas": {
+      "latitude": -42.467338,
+      "longitude": -73.495526
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "apt-002",
+    "nombre": "Casa Vacacional La Ejemplar",
+    "categoriaId": "departamentos",
+    "subcategoria": "Casa vacacional",
+    "descripcion": "Casa completa de dos pisos con patio, cerca del borde costero.",
+    "precio": "$80.000 por noche (referencial)",
+    "capacidad": "Hasta 6 personas",
+    "servicios": ["Patio", "Parrilla", "Estacionamiento"],
+    "destacado": false,
+    "direccion": "Calle Demo 900, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0111",
+      "redesSociales": "instagram.com/ejemplo_casavacacionallaejempl"
+    },
+    "coordenadas": {
+      "latitude": -42.471924,
+      "longitude": -73.489681
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "apt-003",
+    "nombre": "Departamentos Isla de Prueba",
+    "categoriaId": "departamentos",
+    "subcategoria": "Departamentos equipados",
+    "descripcion": "Departamentos sencillos en zona residencial.",
+    "destacado": false,
+    "direccion": "Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0112"
+    },
+    "coordenadas": {
+      "latitude": -42.471001,
+      "longitude": -73.488078
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "hos-001",
+    "nombre": "Hostal Chucao de Ejemplo",
+    "categoriaId": "hospedaje",
+    "subcategoria": "Hostal",
+    "descripcion": "Hostal familiar con desayuno casero y cocina compartida.",
+    "horario": "Recepción 08:00 - 22:00",
+    "precio": "$20.000 por persona (referencial)",
+    "capacidad": "6 habitaciones",
+    "servicios": ["Desayuno", "Cocina compartida", "Wifi"],
+    "destacado": true,
+    "direccion": "Calle Ficticia 233, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0113",
+      "email": "contacto@hostalchucaodeejemplo.example",
+      "redesSociales": "instagram.com/ejemplo_hostalchucaodeejemplo"
+    },
+    "coordenadas": {
+      "latitude": -42.476919,
+      "longitude": -73.488344
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "hos-002",
+    "nombre": "Hospedaje Doña Ejemplo",
+    "categoriaId": "hospedaje",
+    "subcategoria": "Hospedaje",
+    "descripcion": "Piezas en casa familiar, a pasos del terminal de buses.",
+    "precio": "$15.000 por persona (referencial)",
+    "servicios": ["Desayuno", "Baño compartido"],
+    "destacado": false,
+    "direccion": "Pasaje Demo 7, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0114"
+    },
+    "coordenadas": {
+      "latitude": -42.47328,
+      "longitude": -73.491315
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "hos-003",
+    "nombre": "Hospedaje Canal de Muestra",
+    "categoriaId": "hospedaje",
+    "subcategoria": "Hospedaje y cabañas",
+    "descripcion": "Hospedaje con una cabaña adicional y estacionamiento.",
+    "servicios": ["Estacionamiento"],
+    "destacado": false,
+    "direccion": "Camino Inventado 15, Coñab, Achao",
+    "contacto": {},
+    "coordenadas": {
+      "latitude": -42.4957691,
+      "longitude": -73.495832
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "rest-001",
+    "nombre": "Restaurante El Fogón Ficticio",
+    "categoriaId": "restaurantes",
+    "subcategoria": "Cocina chilota / mariscos",
+    "descripcion": "Curanto en olla, cazuela de mariscos y pescado del día.",
+    "horario": "Mar a Dom 12:00 - 22:00",
+    "precio": "$9.000 - $15.000 plato (referencial)",
+    "servicios": ["Comida típica", "Vista al mar", "Para llevar"],
+    "destacado": true,
+    "direccion": "Costanera Ejemplo 150, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0116",
+      "email": "contacto@restauranteelfogónfict.example",
+      "redesSociales": "instagram.com/ejemplo_restauranteelfogónfict"
+    },
+    "coordenadas": {
+      "latitude": -42.476586,
+      "longitude": -73.486521
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "rest-002",
+    "nombre": "Cocinería La Ola de Prueba",
+    "categoriaId": "restaurantes",
+    "subcategoria": "Pescados y mariscos",
+    "descripcion": "Cocinería frente al muelle con platos caseros.",
+    "horario": "Lun a Sáb 11:30 - 19:00",
+    "precio": "$7.000 - $11.000 plato (referencial)",
+    "servicios": ["Menú del día"],
+    "destacado": false,
+    "direccion": "Muelle Demo s/n, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0117"
+    },
+    "coordenadas": {
+      "latitude": -42.476184,
+      "longitude": -73.496646
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "rest-003",
+    "nombre": "Restobar Bahía Inventada",
+    "categoriaId": "restaurantes",
+    "subcategoria": "Restobar",
+    "descripcion": "Tablas, sándwiches y cerveza artesanal de la zona.",
+    "horario": "Jue a Sáb 18:00 - 01:00",
+    "servicios": ["Bar", "Música en vivo"],
+    "destacado": false,
+    "direccion": "Calle Demo 80, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0118",
+      "redesSociales": "instagram.com/ejemplo_restobarbahíainventada"
+    },
+    "coordenadas": {
+      "latitude": -42.471001,
+      "longitude": -73.488078
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "com-001",
+    "nombre": "Café Milcao de Ejemplo",
+    "categoriaId": "venta-comida",
+    "subcategoria": "Cafetería / pastelería",
+    "descripcion": "Cafetería con kuchen, milcaos y café de grano.",
+    "horario": "Lun a Dom 09:00 - 20:00",
+    "precio": "$2.500 - $6.000 (referencial)",
+    "servicios": ["Café", "Repostería", "Wifi"],
+    "destacado": true,
+    "direccion": "Plaza Ficticia 3, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0119",
+      "redesSociales": "instagram.com/ejemplo_cafémilcaodeejemplo"
+    },
+    "coordenadas": {
+      "latitude": -42.467383,
+      "longitude": -73.492236
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "com-002",
+    "nombre": "Panadería La Masa de Muestra",
+    "categoriaId": "venta-comida",
+    "subcategoria": "Panadería / comida típica",
+    "descripcion": "Pan amasado, chapaleles y empanadas de mariscos.",
+    "horario": "Lun a Sáb 07:30 - 20:30",
+    "servicios": ["Pan amasado", "Empanadas"],
+    "destacado": false,
+    "direccion": "Calle Ficticia 500, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0120"
+    },
+    "coordenadas": {
+      "latitude": -42.470456,
+      "longitude": -73.485586
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "com-003",
+    "nombre": "Minimarket Esquina de Prueba",
+    "categoriaId": "venta-comida",
+    "subcategoria": "Minimarket / panadería",
+    "descripcion": "Abarrotes, pan y comida preparada para llevar.",
+    "horario": "Lun a Dom 08:00 - 22:00",
+    "servicios": ["Abarrotes", "Comida preparada"],
+    "destacado": false,
+    "direccion": "Esquina Demo 1, Villa Quinchao",
+    "contacto": {
+      "telefono": "+56 9 0000 0121"
+    },
+    "coordenadas": {
+      "latitude": -42.535976,
+      "longitude": -73.4269749
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "atr-001",
+    "nombre": "Museo de la Isla de Ejemplo",
+    "categoriaId": "lugares-turisticos",
+    "subcategoria": "Museo",
+    "descripcion": "Pequeño museo con objetos de la vida isleña y la navegación.",
+    "horario": "Mar a Dom 10:00 - 18:00",
+    "precio": "Entrada liberada (referencial)",
+    "servicios": ["Visitas guiadas"],
+    "destacado": true,
+    "direccion": "Calle Demo 20, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0122",
+      "email": "contacto@museodelaisladeejemplo.example"
+    },
+    "coordenadas": {
+      "latitude": -42.468665,
+      "longitude": -73.482586
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "atr-002",
+    "nombre": "Mirador Cerro Inventado",
+    "categoriaId": "lugares-turisticos",
+    "subcategoria": "Mirador",
+    "descripcion": "Mirador con vista panorámica a las islas del archipiélago.",
+    "horario": "Libre acceso",
+    "precio": "Gratis",
+    "servicios": ["Estacionamiento", "Bancas"],
+    "destacado": false,
+    "direccion": "Camino Ficticio s/n, Achao",
+    "contacto": {},
+    "coordenadas": {
+      "latitude": -42.475895,
+      "longitude": -73.490027
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "atr-003",
+    "nombre": "Paseo Costero de Muestra",
+    "categoriaId": "lugares-turisticos",
+    "subcategoria": "Borde costero",
+    "descripcion": "Paseo peatonal junto al mar con bancas y juegos infantiles.",
+    "horario": "Libre acceso",
+    "precio": "Gratis",
+    "servicios": ["Juegos infantiles", "Iluminación"],
+    "destacado": false,
+    "direccion": "Costanera Ejemplo, Achao",
+    "contacto": {},
+    "coordenadas": {
+      "latitude": -42.476239,
+      "longitude": -73.485696
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "exc-001",
+    "nombre": "Tour Islas de Ejemplo",
+    "categoriaId": "excursiones",
+    "subcategoria": "Tour guiado",
+    "descripcion": "Recorrido en lancha a dos islas menores con almuerzo típico.",
+    "horario": "Temporada estival, salidas 09:00",
+    "precio": "$35.000 por persona (referencial)",
+    "capacidad": "Hasta 12 personas",
+    "servicios": ["Lancha", "Almuerzo", "Guía"],
+    "destacado": true,
+    "direccion": "Rampa de Achao, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0125",
+      "email": "contacto@tourislasdeejemplo.example",
+      "sitioWeb": "https://tourislasdeejemplo.example",
+      "redesSociales": "instagram.com/ejemplo_tourislasdeejemplo"
+    },
+    "coordenadas": {
+      "latitude": -42.475071,
+      "longitude": -73.492985
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "exc-002",
+    "nombre": "Excursión Capillas de Prueba",
+    "categoriaId": "excursiones",
+    "subcategoria": "Isla / patrimonio",
+    "descripcion": "Visita guiada a capillas de madera de una isla vecina.",
+    "servicios": ["Guía", "Transporte marítimo"],
+    "destacado": false,
+    "direccion": "Rampa de Achao, Isla Caguach",
+    "contacto": {
+      "telefono": "+56 9 0000 0126"
+    },
+    "coordenadas": {
+      "latitude": -42.4881967,
+      "longitude": -73.2634733
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "exc-003",
+    "nombre": "Paseo en Kayak Ficticio",
+    "categoriaId": "excursiones",
+    "subcategoria": "Tour local",
+    "descripcion": "Salida en kayak por la bahía con instructor.",
+    "horario": "Dic a Mar, 10:00 y 15:00",
+    "precio": "$20.000 por persona (referencial)",
+    "capacidad": "Hasta 8 personas",
+    "servicios": ["Kayak", "Chaleco salvavidas", "Instructor"],
+    "destacado": false,
+    "direccion": "Playa Demo, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0127",
+      "email": "contacto@paseoenkayakficticio.example",
+      "redesSociales": "instagram.com/ejemplo_paseoenkayakficticio"
+    },
+    "coordenadas": {
+      "latitude": -42.474793,
+      "longitude": -73.485699
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "art-001",
+    "nombre": "Feria Artesanal de Ejemplo",
+    "categoriaId": "artesania",
+    "subcategoria": "Mercado artesanal",
+    "descripcion": "Puestos de tejidos de lana, cestería y tallados en madera.",
+    "horario": "Lun a Dom 10:00 - 19:00 (verano)",
+    "servicios": ["Tejidos", "Cestería", "Madera"],
+    "destacado": true,
+    "direccion": "Plaza Ficticia s/n, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0128",
+      "redesSociales": "instagram.com/ejemplo_feriaartesanaldeejempl"
+    },
+    "coordenadas": {
+      "latitude": -42.472057,
+      "longitude": -73.483925
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "art-002",
+    "nombre": "Taller Telar de Muestra",
+    "categoriaId": "artesania",
+    "subcategoria": "Taller artesanal",
+    "descripcion": "Taller donde se puede ver el proceso de hilado y teñido natural.",
+    "servicios": ["Demostraciones", "Venta directa"],
+    "destacado": false,
+    "direccion": "Calle Demo 66, Villa Quinchao",
+    "contacto": {
+      "telefono": "+56 9 0000 0129"
+    },
+    "coordenadas": {
+      "latitude": -42.535976,
+      "longitude": -73.4269749
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "eve-001",
+    "nombre": "Fiesta Costumbrista de Ejemplo",
+    "categoriaId": "fiestas-eventos",
+    "subcategoria": "Fiesta costumbrista",
+    "descripcion": "Fiesta con curanto, música chilota y juegos tradicionales.",
+    "horario": "Enero (fecha por confirmar)",
+    "precio": "Entrada liberada (referencial)",
+    "servicios": ["Gastronomía", "Música", "Juegos"],
+    "destacado": true,
+    "direccion": "Gimnasio Municipal (ficticio), Achao",
+    "contacto": {
+      "redesSociales": "instagram.com/ejemplo_fiestacostumbristadeej"
+    },
+    "coordenadas": {
+      "latitude": -42.470727,
+      "longitude": -73.487808
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "eve-002",
+    "nombre": "Festival de la Costa Inventada",
+    "categoriaId": "fiestas-eventos",
+    "subcategoria": "Festival",
+    "descripcion": "Festival de música y artesanía junto al mar.",
+    "horario": "Febrero (fecha por confirmar)",
+    "precio": "Gratis",
+    "servicios": ["Escenario", "Artesanía"],
+    "destacado": false,
+    "direccion": "Costanera Ejemplo, Achao",
+    "contacto": {
+      "redesSociales": "instagram.com/ejemplo_festivaldelacostainven"
+    },
+    "coordenadas": {
+      "latitude": -42.469754,
+      "longitude": -73.491872
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "eve-003",
+    "nombre": "Fiesta Religiosa de Prueba",
+    "categoriaId": "fiestas-eventos",
+    "subcategoria": "Fiesta religiosa",
+    "descripcion": "Procesión y celebración tradicional en una isla vecina.",
+    "horario": "Fecha por confirmar",
+    "precio": "Gratis",
+    "destacado": false,
+    "direccion": "Isla vecina (ficticio), Isla Caguach",
+    "contacto": {},
+    "coordenadas": {
+      "latitude": -42.4881967,
+      "longitude": -73.2634733
+    },
+    "ubicacionConfirmada": false
+  },
+  {
+    "id": "tra-001",
+    "nombre": "Rampa Ejemplo Norte",
+    "categoriaId": "transporte",
+    "subcategoria": "Rampa de barcaza",
+    "descripcion": "Rampa ficticia de la barcaza que conecta con Chiloé.",
+    "horario": "Continuo 24 h",
+    "precio": "Ver hoja Rutas_maritimas",
+    "destacado": true,
+    "direccion": "Sector ficticio, Isla Quinchao",
+    "contacto": {},
+    "coordenadas": {
+      "latitude": -42.451201,
+      "longitude": -73.533433
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "tra-002",
+    "nombre": "Embarcadero de Muestra",
+    "categoriaId": "transporte",
+    "subcategoria": "Embarcadero de lanchas",
+    "descripcion": "Punto de salida ficticio de las lanchas a las islas.",
+    "horario": "Según horarios",
+    "precio": "Ver hoja Horarios_zarpes",
+    "destacado": false,
+    "direccion": "Costanera Ejemplo s/n, Achao",
+    "contacto": {},
+    "coordenadas": {
+      "latitude": -42.47534,
+      "longitude": -73.482738
+    },
+    "ubicacionConfirmada": true
+  },
+  {
+    "id": "tra-003",
+    "nombre": "Terminal de Buses de Prueba",
+    "categoriaId": "transporte",
+    "subcategoria": "Terminal de buses",
+    "descripcion": "Terminal ficticio con buses hacia Castro.",
+    "horario": "Lun a Dom 06:30 - 20:00",
+    "servicios": ["Boletería", "Baños"],
+    "destacado": false,
+    "direccion": "Calle Demo 2, Achao",
+    "contacto": {
+      "telefono": "+56 9 0000 0135"
+    },
+    "coordenadas": {
+      "latitude": -42.471001,
+      "longitude": -73.488078
+    },
+    "ubicacionConfirmada": false
+  }
+]

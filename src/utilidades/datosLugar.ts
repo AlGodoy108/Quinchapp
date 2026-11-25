@@ -41,6 +41,14 @@ export function tieneUbicacion(lugar: Lugar): lugar is Lugar & { coordenadas: Co
   return coordenadasValidas(lugar.coordenadas);
 }
 
+// Agrega https:// a los enlaces que vienen sin él (ej. instagram.com/lugar)
+function comoEnlace(direccion: string | undefined) {
+  if (!direccion) {
+    return undefined;
+  }
+  return /^https?:\/\//.test(direccion) ? direccion : `https://${direccion}`;
+}
+
 // Solo los dígitos y el "+" inicial, para armar los enlaces tel: y wa.me
 function soloDigitos(telefono: string) {
   return telefono.replace(/[^\d+]/g, '');
@@ -51,6 +59,7 @@ export function contactoDisponible(contacto: Contacto | undefined) {
   const whatsapp = textoONada(contacto?.whatsapp) ?? telefono;
   const email = textoONada(contacto?.email);
   const sitioWeb = textoONada(contacto?.sitioWeb);
+  const redesSociales = textoONada(contacto?.redesSociales);
 
   return {
     telefono,
@@ -61,12 +70,10 @@ export function contactoDisponible(contacto: Contacto | undefined) {
       ? `https://wa.me/${soloDigitos(whatsapp).replace('+', '')}`
       : undefined,
     enlaceEmail: email ? `mailto:${email}` : undefined,
-    enlaceSitioWeb: sitioWeb
-      ? /^https?:\/\//.test(sitioWeb)
-        ? sitioWeb
-        : `https://${sitioWeb}`
-      : undefined,
-    hayAlguno: Boolean(telefono || whatsapp || email || sitioWeb),
+    redesSociales,
+    enlaceSitioWeb: comoEnlace(sitioWeb),
+    enlaceRedesSociales: comoEnlace(redesSociales),
+    hayAlguno: Boolean(telefono || whatsapp || email || sitioWeb || redesSociales),
   };
 }
 
@@ -80,4 +87,5 @@ export const TEXTOS_PENDIENTES = {
   sinUbicacion: 'Este lugar todavía no tiene ubicación en el mapa',
   foto: 'Foto no disponible',
   estrellas: 'Sin calificación',
+  precio: 'Precio por confirmar',
 };

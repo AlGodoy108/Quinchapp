@@ -5,3 +5,11 @@ export const REGION_QUINCHAO = {
   latitudeDelta: 0.06,
   longitudeDelta: 0.06,
 };
+
+// Mapa pequeño de la ficha de cada lugar
+export const MAPA_FICHA = {
+  alto: 200,
+  // Cuánto se ve alrededor del punto (en grados). Si la ubicación es aproximada se aleja más
+  acercamiento: 0.006,
+  acercamientoAproximado: 0.03,
+};

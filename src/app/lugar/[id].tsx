@@ -6,6 +6,7 @@ import { EstadoVacio } from '@/componentes/EstadoVacio';
 import { Estrellas } from '@/componentes/Estrellas';
 import { Icono } from '@/componentes/Icono';
 import { ImagenLugar } from '@/componentes/ImagenLugar';
+import { MapaLugar } from '@/componentes/MapaLugar';
 import { TarjetaContacto } from '@/componentes/TarjetaContacto';
 import { obtenerCategoria } from '@/constantes/categorias';
 import type { NombreIcono } from '@/constantes/iconos';
@@ -56,8 +57,8 @@ export default function PantallaDetalleLugar() {
   return (
     <ScrollView style={estilos.pantalla} contentContainerStyle={estilos.contenido}>
       <Stack.Screen options={{ title: lugar.nombre }} />
-      <ImagenLugar foto={lugar.foto} nombreLugar={lugar.nombre} />
 
+      {/* 1. Información del lugar */}
       <View style={estilos.tarjeta}>
         {categoria && (
           <Text style={estilos.categoria}>
@@ -69,14 +70,22 @@ export default function PantallaDetalleLugar() {
 
         <Dato icono="horario" texto={horario} pendiente={TEXTOS_PENDIENTES.horario} />
         <Dato icono="precio" texto={precio} pendiente={TEXTOS_PENDIENTES.precio} />
-        {capacidad && <Dato icono="capacidad" texto={capacidad} pendiente="" />}
-        {servicios.length > 0 && (
-          <Dato icono="servicios" texto={servicios.join(' · ')} pendiente="" />
-        )}
         <Dato
           icono={conUbicacion ? 'ubicacion' : 'sinUbicacion'}
           texto={direccion}
           pendiente={conUbicacion ? TEXTOS_PENDIENTES.direccion : TEXTOS_PENDIENTES.sinUbicacion}
+        />
+      </View>
+
+      {/* 2. Mapa con el punto del lugar */}
+      <View style={estilos.seccion}>
+        <Text style={estilos.tituloSeccion}>Ubicación</Text>
+        <MapaLugar
+          coordenadas={conUbicacion ? lugar.coordenadas : undefined}
+          aproximada={ubicacionSinConfirmar}
+          colorPunto={categoria?.colorMapa}
+          nombre={lugar.nombre}
+          alPresionar={abrirComoLlegar}
         />
         {ubicacionSinConfirmar && (
           <View style={estilos.aviso}>
@@ -86,20 +95,34 @@ export default function PantallaDetalleLugar() {
             </Text>
           </View>
         )}
-
-        <Text style={descripcion ? estilos.descripcion : estilos.textoPendiente}>
-          {descripcion ?? TEXTOS_PENDIENTES.descripcion}
-        </Text>
+        <Boton
+          texto={conUbicacion ? 'Cómo llegar' : 'Ubicación no disponible'}
+          icono={conUbicacion ? 'ubicacion' : 'sinUbicacion'}
+          deshabilitado={!conUbicacion}
+          alPresionar={abrirComoLlegar}
+        />
       </View>
 
-      <TarjetaContacto contacto={lugar.contacto} />
+      {/* 3. Imágenes */}
+      <View style={estilos.seccion}>
+        <Text style={estilos.tituloSeccion}>Fotos</Text>
+        <ImagenLugar foto={lugar.foto} nombreLugar={lugar.nombre} />
+      </View>
 
-      <Boton
-        texto={conUbicacion ? 'Cómo llegar' : 'Ubicación no disponible'}
-        icono={conUbicacion ? 'ubicacion' : 'sinUbicacion'}
-        deshabilitado={!conUbicacion}
-        alPresionar={abrirComoLlegar}
-      />
+      {/* 4. Información general */}
+      <View style={estilos.seccion}>
+        <Text style={estilos.tituloSeccion}>Información general</Text>
+        <View style={estilos.tarjeta}>
+          <Text style={descripcion ? estilos.descripcion : estilos.textoPendiente}>
+            {descripcion ?? TEXTOS_PENDIENTES.descripcion}
+          </Text>
+          {capacidad && <Dato icono="capacidad" texto={capacidad} pendiente="" />}
+          {servicios.length > 0 && (
+            <Dato icono="servicios" texto={servicios.join(' · ')} pendiente="" />
+          )}
+        </View>
+        <TarjetaContacto contacto={lugar.contacto} />
+      </View>
     </ScrollView>
   );
 }
@@ -131,6 +154,13 @@ const estilos = StyleSheet.create({
     gap: ESPACIOS.l,
     padding: ESPACIOS.l,
     paddingBottom: ESPACIOS.xxl,
+  },
+  seccion: {
+    gap: ESPACIOS.s,
+  },
+  tituloSeccion: {
+    ...TIPOGRAFIA.titulo2,
+    color: COLORES.texto,
   },
   centrado: {
     flexGrow: 1,

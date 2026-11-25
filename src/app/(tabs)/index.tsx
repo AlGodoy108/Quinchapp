@@ -36,11 +36,7 @@ export default function PantallaInicio() {
       </View>
 
       <View style={estilos.bloque}>
-        <Buscador
-          alBuscar={(busqueda) =>
-            router.navigate({ pathname: '/lugares', params: { busqueda, categoria: '' } })
-          }
-        />
+        <Buscador alPresionar={() => router.push('/buscar')} />
       </View>
 
       <View style={estilos.bloque}>

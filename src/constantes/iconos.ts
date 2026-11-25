@@ -1,4 +1,5 @@
 import {
+  ArrowLeft,
   ArrowRight,
   AtSign,
   Banknote,
@@ -44,6 +45,7 @@ export const ICONOS = {
   cerrar: X,
   flecha: ChevronRight,
   flechaDerecha: ArrowRight,
+  volver: ArrowLeft,
   estrella: Star,
   horario: Clock3,
   ubicacion: MapPin,

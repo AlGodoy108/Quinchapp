@@ -43,6 +43,7 @@ export default function LayoutRaiz() {
         }}
       >
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="buscar" options={{ headerShown: false, animation: 'fade' }} />
         <Stack.Screen name="lugar/[id]" options={{ title: 'Detalle', headerBackTitle: 'Volver' }} />
       </Stack>
       <StatusBar style="dark" />

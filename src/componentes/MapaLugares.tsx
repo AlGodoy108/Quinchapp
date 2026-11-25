@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
 import { obtenerCategoria } from '@/constantes/categorias';
-import { REGION_QUINCHAO } from '@/constantes/lugaresEjemplo';
+import { REGION_QUINCHAO } from '@/constantes/mapa';
 import type { Lugar } from '@/tipos/lugar';
 import { TEXTOS_PENDIENTES, textoONada, tieneUbicacion } from '@/utilidades/datosLugar';
 

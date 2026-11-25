@@ -66,6 +66,13 @@ export function TarjetaContacto({ contacto }: { contacto?: Contacto }) {
           alPresionar={() => abrir(datos.enlaceSitioWeb)}
         />
       )}
+      {datos.redesSociales && (
+        <FilaEnlace
+          icono="redesSociales"
+          texto={datos.redesSociales}
+          alPresionar={() => abrir(datos.enlaceRedesSociales)}
+        />
+      )}
     </View>
   );
 }

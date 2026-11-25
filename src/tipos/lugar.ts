@@ -1,13 +1,19 @@
 import type { NombreIcono } from '@/constantes/iconos';
 
+// Las mismas 12 categorías de la columna "categoria" del Excel de oferta turística
 export type IdCategoria =
+  | 'camping'
+  | 'cabanas'
+  | 'hoteles'
+  | 'departamentos'
+  | 'hospedaje'
   | 'restaurantes'
-  | 'comida-rapida'
-  | 'hoteleria'
-  | 'parques'
-  | 'museos'
-  | 'navegaciones'
-  | 'actividades';
+  | 'venta-comida'
+  | 'lugares-turisticos'
+  | 'excursiones'
+  | 'artesania'
+  | 'fiestas-eventos'
+  | 'transporte';
 
 export type Categoria = {
   id: IdCategoria;
@@ -26,6 +32,7 @@ export type Contacto = {
   whatsapp?: string;
   email?: string;
   sitioWeb?: string;
+  redesSociales?: string;
 };
 
 // Los datos reales vienen incompletos (celdas vacías, "Consultar", "Sin dirección publicada").
@@ -35,8 +42,15 @@ export type Lugar = {
   id: string;
   nombre: string;
   categoriaId: IdCategoria;
+  // Ej. "Hotel boutique" dentro de Hoteles
+  subcategoria?: string;
   descripcion?: string;
   horario?: string;
+  // Precio de referencia tal como viene del Excel (ej. "$45.000 por noche (referencial)")
+  precio?: string;
+  capacidad?: string;
+  // Servicios del lugar (en el Excel van separados por ";")
+  servicios?: string[];
   estrellas?: number;
   destacado: boolean;
   // URL de la foto. Si falta o no carga, se muestra la imagen del pudú
